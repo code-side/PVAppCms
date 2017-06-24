@@ -1,0 +1,84 @@
+<div>
+    <h2>
+        <span jhiTranslate="pvAppCmsApp.pVAppUser.home.title">PV App Users</span>
+        <button class="btn btn-primary float-right create-pv-app-user" [routerLink]="['/', { outlets: { popup: ['pv-app-user-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pvAppCmsApp.pVAppUser.home.createLabel">
+            Create new PV App User
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pVAppUsers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.pVAppUser.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span jhiTranslate="pvAppCmsApp.pVAppUser.email">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="password"><span jhiTranslate="pvAppCmsApp.pVAppUser.password">Password</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="registrationDate"><span jhiTranslate="pvAppCmsApp.pVAppUser.registrationDate">Registration Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="birthday"><span jhiTranslate="pvAppCmsApp.pVAppUser.birthday">Birthday</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nationality"><span jhiTranslate="pvAppCmsApp.pVAppUser.nationality">Nationality</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gender"><span jhiTranslate="pvAppCmsApp.pVAppUser.gender">Gender</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="photo"><span jhiTranslate="pvAppCmsApp.pVAppUser.photo">Photo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="pvAppCmsApp.pVAppUser.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="favoriteList"><span jhiTranslate="pvAppCmsApp.pVAppUser.favoriteList">Favorite List</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="achievements"><span jhiTranslate="pvAppCmsApp.pVAppUser.achievements">Achievements</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pVAppUser of pVAppUsers ;trackBy: trackId">
+                <td><a [routerLink]="['../pv-app-user', pVAppUser.id ]">{{pVAppUser.id}}</a></td>
+                <td>{{pVAppUser.name}}</td>
+                <td>{{pVAppUser.email}}</td>
+                <td>{{pVAppUser.password}}</td>
+                <td>{{pVAppUser.registrationDate | date:'mediumDate'}}</td>
+                <td>{{pVAppUser.birthday | date:'mediumDate'}}</td>
+                <td>{{pVAppUser.nationality}}</td>
+                <td>{{pVAppUser.gender}}</td>
+                <td>{{pVAppUser.photo}}</td>
+                <td>{{pVAppUser.status}}</td>
+                <td>{{pVAppUser.favoriteList}}</td>
+                <td>{{pVAppUser.achievements}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pv-app-user', pVAppUser.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pv-app-user/'+ pVAppUser.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pv-app-user/'+ pVAppUser.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="pVAppUsers && pVAppUsers.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

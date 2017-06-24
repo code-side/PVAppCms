@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span jhiTranslate="pvAppCmsApp.province.home.title">Provinces</span>
+        <button class="btn btn-primary float-right create-province" [routerLink]="['/', { outlets: { popup: ['province-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pvAppCmsApp.province.home.createLabel">
+            Create new Province
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="provinces">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.province.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="coordinates"><span jhiTranslate="pvAppCmsApp.province.coordinates">Coordinates</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="history"><span jhiTranslate="pvAppCmsApp.province.history">History</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="culture"><span jhiTranslate="pvAppCmsApp.province.culture">Culture</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="photo"><span jhiTranslate="pvAppCmsApp.province.photo">Photo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cantons"><span jhiTranslate="pvAppCmsApp.province.cantons">Cantons</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="emergencyContacts"><span jhiTranslate="pvAppCmsApp.province.emergencyContacts">Emergency Contacts</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let province of provinces ;trackBy: trackId">
+                <td><a [routerLink]="['../province', province.id ]">{{province.id}}</a></td>
+                <td>{{province.name}}</td>
+                <td>{{province.coordinates}}</td>
+                <td>{{province.history}}</td>
+                <td>{{province.culture}}</td>
+                <td>{{province.photo}}</td>
+                <td>{{province.cantons}}</td>
+                <td>{{province.emergencyContacts}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../province', province.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'province/'+ province.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'province/'+ province.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="provinces && provinces.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

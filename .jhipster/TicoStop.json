@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "historicalReview",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordinates",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "province",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170624071229",
+    "entityTableName": "tico_stop",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no"
+}

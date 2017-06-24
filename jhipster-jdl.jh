@@ -1,0 +1,66 @@
+entity PVAppUser
+{
+    id String,
+    name String,
+    email String,
+    password String,
+    registrationDate LocalDate,
+    birthday LocalDate,
+    nationality String,
+    gender String,
+    photo String,
+    status Integer,
+    favoriteList String,
+    achievements String
+}
+
+entity TouristDestination
+{
+    id String,
+    name String,
+    coordinates String,
+    description String,
+    photos String,
+    address String,
+    province String,
+    attributes String,
+    reviews String
+}
+
+entity Province
+{
+    id String,
+    name String,
+    coordinates String,
+    history String,
+    culture String,
+    photo String,
+    cantons String,
+    emergencyContacts String
+}
+
+entity TicoStop
+{
+    id String,
+    name String,
+    historicalReview String,
+    coordinates String,
+    photo String,
+    address String,
+    province String
+}
+
+entity TouristicInterest
+{
+    id String,
+    name String,
+    type String,
+    workingHours String,
+    contact String,
+    address String,
+    province String,
+    reviews String
+}
+
+dto * with mapstruct
+paginate * with pagination

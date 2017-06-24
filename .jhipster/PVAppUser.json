@@ -1,0 +1,55 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registrationDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "birthday",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nationality",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "favoriteList",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "achievements",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170624071226",
+    "entityTableName": "pv_app_user",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no"
+}

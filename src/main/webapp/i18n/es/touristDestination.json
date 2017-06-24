@@ -1,0 +1,28 @@
+{
+    "pvAppCmsApp": {
+        "touristDestination" : {
+            "home": {
+                "title": "Tourist Destinations",
+                "createLabel": "Crear nuevo Tourist Destination",
+                "createOrEditLabel": "Crear o editar Tourist Destination"
+            },
+            "created": "Un nuevo Tourist Destination ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tourist Destination ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tourist Destination ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tourist Destination {{ id }}?"
+            },
+            "detail": {
+                "title": "Tourist Destination"
+            },
+            "name": "Name",
+            "coordinates": "Coordinates",
+            "description": "Description",
+            "photos": "Photos",
+            "address": "Address",
+            "province": "Province",
+            "attributes": "Attributes",
+            "reviews": "Reviews"
+        }
+    }
+}

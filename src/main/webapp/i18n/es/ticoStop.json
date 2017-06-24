@@ -1,0 +1,26 @@
+{
+    "pvAppCmsApp": {
+        "ticoStop" : {
+            "home": {
+                "title": "Tico Stops",
+                "createLabel": "Crear nuevo Tico Stop",
+                "createOrEditLabel": "Crear o editar Tico Stop"
+            },
+            "created": "Un nuevo Tico Stop ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tico Stop ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tico Stop ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tico Stop {{ id }}?"
+            },
+            "detail": {
+                "title": "Tico Stop"
+            },
+            "name": "Name",
+            "historicalReview": "Historical Review",
+            "coordinates": "Coordinates",
+            "photo": "Photo",
+            "address": "Address",
+            "province": "Province"
+        }
+    }
+}

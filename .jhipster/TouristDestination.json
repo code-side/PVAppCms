@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordinates",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photos",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "province",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attributes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reviews",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170624071227",
+    "entityTableName": "tourist_destination",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no"
+}

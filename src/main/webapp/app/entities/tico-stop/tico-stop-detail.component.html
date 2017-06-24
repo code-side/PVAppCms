@@ -1,0 +1,45 @@
+
+<div *ngIf="ticoStop">
+    <h2><span jhiTranslate="pvAppCmsApp.ticoStop.detail.title">Tico Stop</span> {{ticoStop.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pvAppCmsApp.ticoStop.name">Name</span></dt>
+        <dd>
+            <span>{{ticoStop.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="pvAppCmsApp.ticoStop.historicalReview">Historical Review</span></dt>
+        <dd>
+            <span>{{ticoStop.historicalReview}}</span>
+        </dd>
+        <dt><span jhiTranslate="pvAppCmsApp.ticoStop.coordinates">Coordinates</span></dt>
+        <dd>
+            <span>{{ticoStop.coordinates}}</span>
+        </dd>
+        <dt><span jhiTranslate="pvAppCmsApp.ticoStop.photo">Photo</span></dt>
+        <dd>
+            <span>{{ticoStop.photo}}</span>
+        </dd>
+        <dt><span jhiTranslate="pvAppCmsApp.ticoStop.address">Address</span></dt>
+        <dd>
+            <span>{{ticoStop.address}}</span>
+        </dd>
+        <dt><span jhiTranslate="pvAppCmsApp.ticoStop.province">Province</span></dt>
+        <dd>
+            <span>{{ticoStop.province}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tico-stop/'+ ticoStop.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

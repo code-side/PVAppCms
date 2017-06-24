@@ -1,0 +1,26 @@
+{
+    "pvAppCmsApp": {
+        "ticoStop" : {
+            "home": {
+                "title": "Tico Stops",
+                "createLabel": "Create a new Tico Stop",
+                "createOrEditLabel": "Create or edit a Tico Stop"
+            },
+            "created": "A new Tico Stop is created with identifier {{ param }}",
+            "updated": "A Tico Stop is updated with identifier {{ param }}",
+            "deleted": "A Tico Stop is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tico Stop {{ id }}?"
+            },
+            "detail": {
+                "title": "Tico Stop"
+            },
+            "name": "Name",
+            "historicalReview": "Historical Review",
+            "coordinates": "Coordinates",
+            "photo": "Photo",
+            "address": "Address",
+            "province": "Province"
+        }
+    }
+}

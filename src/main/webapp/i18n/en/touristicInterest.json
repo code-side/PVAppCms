@@ -1,0 +1,27 @@
+{
+    "pvAppCmsApp": {
+        "touristicInterest" : {
+            "home": {
+                "title": "Touristic Interests",
+                "createLabel": "Create a new Touristic Interest",
+                "createOrEditLabel": "Create or edit a Touristic Interest"
+            },
+            "created": "A new Touristic Interest is created with identifier {{ param }}",
+            "updated": "A Touristic Interest is updated with identifier {{ param }}",
+            "deleted": "A Touristic Interest is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Touristic Interest {{ id }}?"
+            },
+            "detail": {
+                "title": "Touristic Interest"
+            },
+            "name": "Name",
+            "type": "Type",
+            "workingHours": "Working Hours",
+            "contact": "Contact",
+            "address": "Address",
+            "province": "Province",
+            "reviews": "Reviews"
+        }
+    }
+}

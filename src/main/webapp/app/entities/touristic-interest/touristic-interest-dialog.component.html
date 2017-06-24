@@ -1,0 +1,60 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTouristicInterestLabel" jhiTranslate="pvAppCmsApp.touristicInterest.home.createOrEditLabel">Create or edit a Touristic Interest</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!touristicInterest.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="touristicInterest.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="touristicInterest.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="touristicInterest.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.workingHours" for="field_workingHours">Working Hours</label>
+            <input type="text" class="form-control" name="workingHours" id="field_workingHours"
+                [(ngModel)]="touristicInterest.workingHours"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.contact" for="field_contact">Contact</label>
+            <input type="text" class="form-control" name="contact" id="field_contact"
+                [(ngModel)]="touristicInterest.contact"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="touristicInterest.address"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.province" for="field_province">Province</label>
+            <input type="text" class="form-control" name="province" id="field_province"
+                [(ngModel)]="touristicInterest.province"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.reviews" for="field_reviews">Reviews</label>
+            <input type="text" class="form-control" name="reviews" id="field_reviews"
+                [(ngModel)]="touristicInterest.reviews"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
