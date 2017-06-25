@@ -11,5 +11,6 @@ export class TicoStop implements BaseEntity {
         public address?: string,
         public province?: ProvinceRef,
     ) {
+      this.province = new ProvinceRef();
     }
 }

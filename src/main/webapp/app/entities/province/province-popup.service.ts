@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Province } from './province.model';
 import { ProvinceService } from './province.service';
-import { ProvinceDialogComponent } from './';
 
 @Injectable()
 export class ProvincePopupService {
@@ -12,7 +11,6 @@ export class ProvincePopupService {
         private modalService: NgbModal,
         private router: Router,
         private provinceService: ProvinceService
-
     ) {}
 
     open(component: Component, id?: number | any): NgbModalRef {
@@ -33,11 +31,6 @@ export class ProvincePopupService {
     provinceModalRef(component: Component, province: Province): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.province = province;
-
-        if (modalRef.componentInstance instanceof ProvinceDialogComponent && province.cantons != null) {
-            (<ProvinceDialogComponent>modalRef.componentInstance).cantons = province.cantons.join();
-        }
-        
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
