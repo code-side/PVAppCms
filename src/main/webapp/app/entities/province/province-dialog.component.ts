@@ -17,6 +17,7 @@ import { ProvinceService } from './province.service';
 export class ProvinceDialogComponent implements OnInit {
 
     province: Province;
+    cantons: String;
     authorities: any[];
     isSaving: boolean;
 
@@ -34,11 +35,14 @@ export class ProvinceDialogComponent implements OnInit {
     }
 
     clear() {
+        this.cantons = "";
         this.activeModal.dismiss('cancel');
     }
 
     save() {
         this.isSaving = true;
+        this.province.cantons = this.cantons.split(',');
+        
         if (this.province.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.provinceService.update(this.province), false);

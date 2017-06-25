@@ -8,9 +8,9 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity TicoStop and its DTO TicoStopDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = { ProvinceRefMapper.class })
 public interface TicoStopMapper extends EntityMapper <TicoStopDTO, TicoStop> {
-    
-    
+
+
 
 }

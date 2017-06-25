@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import { ProvinceRef } from './../province/province-ref.model';
 
 export class TicoStop implements BaseEntity {
     constructor(
@@ -8,7 +9,7 @@ export class TicoStop implements BaseEntity {
         public coordinates?: string,
         public photo?: string,
         public address?: string,
-        public province?: string,
+        public province?: ProvinceRef,
     ) {
     }
 }

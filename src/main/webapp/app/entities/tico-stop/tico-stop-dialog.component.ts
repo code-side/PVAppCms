@@ -5,10 +5,15 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { ResponseWrapper } from '../../shared';
 
 import { TicoStop } from './tico-stop.model';
 import { TicoStopPopupService } from './tico-stop-popup.service';
 import { TicoStopService } from './tico-stop.service';
+
+import { Province } from '../province/province.model';
+import { ProvinceRef } from '../province/province-ref.model';
+import { ProvinceService } from '../province/province.service';
 
 @Component({
     selector: 'jhi-tico-stop-dialog',
@@ -17,11 +22,14 @@ import { TicoStopService } from './tico-stop.service';
 export class TicoStopDialogComponent implements OnInit {
 
     ticoStop: TicoStop;
+    provinces: Province[];
+    province: Province;
     authorities: any[];
     isSaving: boolean;
 
     constructor(
         public activeModal: NgbActiveModal,
+        private provinceService: ProvinceService,
         private alertService: JhiAlertService,
         private ticoStopService: TicoStopService,
         private eventManager: JhiEventManager
@@ -31,6 +39,14 @@ export class TicoStopDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.provinceService.query().subscribe(
+            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+
+    private onSuccess(data, headers) {
+        this.provinces = data;
     }
 
     clear() {

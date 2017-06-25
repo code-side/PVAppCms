@@ -8,7 +8,7 @@ export class Province implements BaseEntity {
         public history?: string,
         public culture?: string,
         public photo?: string,
-        public cantons?: string,
+        public cantons?: string[],
         public emergencyContacts?: string,
     ) {
     }
