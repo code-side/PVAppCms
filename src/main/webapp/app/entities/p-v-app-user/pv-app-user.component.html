@@ -26,8 +26,6 @@
             <th jhiSortBy="gender"><span jhiTranslate="pvAppCmsApp.pVAppUser.gender">Gender</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="photo"><span jhiTranslate="pvAppCmsApp.pVAppUser.photo">Photo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="pvAppCmsApp.pVAppUser.status">Status</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="favoriteList"><span jhiTranslate="pvAppCmsApp.pVAppUser.favoriteList">Favorite List</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="achievements"><span jhiTranslate="pvAppCmsApp.pVAppUser.achievements">Achievements</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -41,10 +39,8 @@
                 <td>{{pVAppUser.birthday | date:'mediumDate'}}</td>
                 <td>{{pVAppUser.nationality}}</td>
                 <td>{{pVAppUser.gender}}</td>
-                <td>{{pVAppUser.photo}}</td>
+                <td align="center"><img src={{pVAppUser.photo}} height="20" width="20"/></td>
                 <td>{{pVAppUser.status}}</td>
-                <td>{{pVAppUser.favoriteList}}</td>
-                <td>{{pVAppUser.achievements}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
