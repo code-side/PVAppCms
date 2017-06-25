@@ -24,8 +24,11 @@ export class TicoStopDialogComponent implements OnInit {
     ticoStop: TicoStop;
     provinces: Province[];
     province: Province;
+    cantons: String[];
+    canton: String;
     authorities: any[];
     isSaving: boolean;
+    selectedProvince: Province;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -43,14 +46,25 @@ export class TicoStopDialogComponent implements OnInit {
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
         );
+
     }
 
     private onSuccess(data, headers) {
         this.provinces = data;
+        
+        this.selectedProvince = this.provinces[1];
+        console.log(this.selectedProvince);
     }
 
     clear() {
         this.activeModal.dismiss('cancel');
+    }
+
+
+
+    updateCantons() {
+      //this.ticoStop.province = new ProvinceRef(this.province.id, this.province.name);
+      //this.cantons = this.province.cantons;
     }
 
     save() {

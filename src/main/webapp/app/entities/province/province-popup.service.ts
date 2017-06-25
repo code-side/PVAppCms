@@ -33,10 +33,11 @@ export class ProvincePopupService {
     provinceModalRef(component: Component, province: Province): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.province = province;
-        
-        if (modalRef.componentInstance instanceof ProvinceDialogComponent)
-          (<ProvinceDialogComponent>modalRef.componentInstance).cantons = province.cantons.join();
 
+        if (modalRef.componentInstance instanceof ProvinceDialogComponent && province.cantons != null) {
+            (<ProvinceDialogComponent>modalRef.componentInstance).cantons = province.cantons.join();
+        }
+        
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.isOpen = false;
