@@ -5,10 +5,15 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { ResponseWrapper } from '../../shared';
 
 import { TouristicInterest } from './touristic-interest.model';
 import { TouristicInterestPopupService } from './touristic-interest-popup.service';
 import { TouristicInterestService } from './touristic-interest.service';
+
+import { Province } from '../province/province.model';
+import { ProvinceRef } from '../province/province-ref.model';
+import { ProvinceService } from '../province/province.service';
 
 @Component({
     selector: 'jhi-touristic-interest-dialog',
@@ -19,18 +24,36 @@ export class TouristicInterestDialogComponent implements OnInit {
     touristicInterest: TouristicInterest;
     authorities: any[];
     isSaving: boolean;
+    provinces: Province[];
+    selectedProvince: Province;
+    selectedCanton: string;
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private touristicInterestService: TouristicInterestService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private provinceService: ProvinceService
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.provinceService.query().subscribe(
+            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+
+    private onSuccess(data, headers) {
+        this.provinces = data;
+        if(this.touristicInterest.id === undefined){
+            this.touristicInterest.province = new ProvinceRef();
+            }
+        else
+            this.findProvince();
+
     }
 
     clear() {
@@ -76,6 +99,29 @@ export class TouristicInterestDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+    saveProvinceRef(action:any){
+        if(action === 'province'){
+            this.touristicInterest.province.name = this.selectedProvince.name;
+            this.touristicInterest.province.id = this.selectedProvince.id;
+            console.log('change')
+        }else{
+            this.touristicInterest.province.canton =  this.selectedCanton;
+        }
+    }
+    findProvince(){
+        for(let province of this.provinces){
+            if(province.id === this.touristicInterest.province.id){
+                this.selectedProvince = province;
+                for(let canton of province.cantons){
+                    if(canton === this.touristicInterest.province.canton){
+                         this.selectedCanton = canton;
+                         break;
+                     }
+                break;
+                }
+            }
+        }
     }
 }
 

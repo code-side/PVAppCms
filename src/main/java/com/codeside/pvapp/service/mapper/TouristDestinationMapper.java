@@ -10,7 +10,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface TouristDestinationMapper extends EntityMapper <TouristDestinationDTO, TouristDestination> {
-    
-    
+
+
 
 }

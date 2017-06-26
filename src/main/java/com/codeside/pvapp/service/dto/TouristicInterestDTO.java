@@ -21,7 +21,7 @@ public class TouristicInterestDTO implements Serializable {
 
     private String address;
 
-    private String province;
+    private ProvinceRefDTO province;
 
     private String reviews;
 
@@ -73,11 +73,11 @@ public class TouristicInterestDTO implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRefDTO getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(ProvinceRefDTO province) {
         this.province = province;
     }
 
@@ -119,7 +119,6 @@ public class TouristicInterestDTO implements Serializable {
             ", workingHours='" + getWorkingHours() + "'" +
             ", contact='" + getContact() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
             ", reviews='" + getReviews() + "'" +
             "}";
     }

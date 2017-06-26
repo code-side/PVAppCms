@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Province } from './province.model';
 import { ProvincePopupService } from './province-popup.service';
 import { ProvinceService } from './province.service';
+import {EmergencyContactRef} from './emergency-contacts-ref.model';
 
 @Component({
     selector: 'jhi-province-dialog',
@@ -20,6 +21,7 @@ export class ProvinceDialogComponent implements OnInit {
     cantons: String;
     authorities: any[];
     isSaving: boolean;
+    emergencyContact:EmergencyContactRef;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -31,6 +33,8 @@ export class ProvinceDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.emergencyContact = new EmergencyContactRef();
+        this.province.emergencyContacts = [];
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
@@ -42,7 +46,7 @@ export class ProvinceDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.province.cantons = this.cantons.split(',');
-        
+
         if (this.province.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.provinceService.update(this.province), false);
@@ -80,6 +84,11 @@ export class ProvinceDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+    addEmergencyContacts(){
+      this.province.emergencyContacts.push(this.emergencyContact);
+      this.emergencyContact = new EmergencyContactRef();
+
     }
 }
 
