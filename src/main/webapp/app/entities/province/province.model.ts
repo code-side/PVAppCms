@@ -1,5 +1,5 @@
 import { BaseEntity } from './../../shared';
-import {EmergencyContactRef} from './../province/emergency-contacts-ref.model';
+import { EmergencyContactRef } from './../province/emergency-contact-ref.model';
 
 export class Province implements BaseEntity {
     constructor(
