@@ -19,7 +19,6 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.pVAppUser.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="email"><span jhiTranslate="pvAppCmsApp.pVAppUser.email">Email</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="password"><span jhiTranslate="pvAppCmsApp.pVAppUser.password">Password</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="registrationDate"><span jhiTranslate="pvAppCmsApp.pVAppUser.registrationDate">Registration Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="birthday"><span jhiTranslate="pvAppCmsApp.pVAppUser.birthday">Birthday</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nationality"><span jhiTranslate="pvAppCmsApp.pVAppUser.nationality">Nationality</span> <span class="fa fa-sort"></span></th>
@@ -34,7 +33,6 @@
                 <td><a [routerLink]="['../pv-app-user', pVAppUser.id ]">{{pVAppUser.id}}</a></td>
                 <td>{{pVAppUser.name}}</td>
                 <td>{{pVAppUser.email}}</td>
-                <td>{{pVAppUser.password}}</td>
                 <td>{{pVAppUser.registrationDate | date:'mediumDate'}}</td>
                 <td>{{pVAppUser.birthday | date:'mediumDate'}}</td>
                 <td>{{pVAppUser.nationality}}</td>
