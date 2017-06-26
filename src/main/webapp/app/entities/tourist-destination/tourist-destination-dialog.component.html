@@ -39,19 +39,37 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.province" for="field_province">Province</label>
-            <input type="text" class="form-control" name="province" id="field_province"
-                [(ngModel)]="touristDestination.province"  />
+            <select [(ngModel)]="selectedProvince" (change)="saveProvinceRef('province')" class="form-control" name="province" id="field_province">
+                <option *ngFor="let p of provinces" [ngValue]="p">{{p.name}}</option>
+            </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.attributes" for="field_attributes">Attributes</label>
-            <input type="text" class="form-control" name="attributes" id="field_attributes"
-                [(ngModel)]="touristDestination.attributes"  />
+        <div *ngIf="selectedProvince !== undefined">
+            <div class="form-group">
+                <label class="form-control-label" for="field_provice_canton">Canton</label>
+                <select  [(ngModel)]= "selectedCanton" (change)="saveProvinceRef('canton')" class="form-control" name="canton" id="field_provice_canton">
+                    <option *ngFor="let c of selectedProvince.cantons" [ngValue]="c">{{c}}</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.reviews" for="field_reviews">Reviews</label>
-            <input type="text" class="form-control" name="reviews" id="field_reviews"
-                [(ngModel)]="touristDestination.reviews"  />
-        </div>
+        <div>
+            <h5>Attribute</h5>
+            <div  class="form-group">
+                <label class="form-control-label" for="field_attribute_name">Attribute name</label>
+                <input type="text" class="form-control" name="attribute_name" id="field_attribute_name"
+                    [(ngModel)]="attribute.name"  />
+                <label class="form-control-label" for="field_attribute_value">Attribute value</label>
+                <input type="text" class="form-control" name="attribute_value" id="field_attribute_value"
+                    [(ngModel)]="attribute.value"  />
+            </div>
+            <button type="button" class="btn btn-info" (click)="addAtribute()" [disabled]="(attribute.name === undefined)">{{isEditAtt?'Edit attribute': 'Add attribute'}}</button>
+            <button type="button" class="btn btn-danger" (click)="cancelEdit()"[hidden]="!isEditAtt">Cancel</button>
+            <div  class= "row" >
+                <div *ngFor="let att of touristDestination.attributes; let i=index">
+                    <label class="btn btn-link" (click)="editAttribute(att, i)">{{att.name}}</label>
+                    <i class="fa fa-times" style="color:red" aria-hidden="true" (click)="removeAttribute()"></i>
+                </div>
+            </div>
+
 
     </div>
     <div class="modal-footer">

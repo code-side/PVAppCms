@@ -32,10 +32,10 @@ public class TouristDestination implements Serializable {
     private String address;
 
     @Field("province")
-    private String province;
+    private ProvinceRef province;
 
     @Field("attributes")
-    private String attributes;
+    private AttributeRef[] attributes;
 
     @Field("reviews")
     private String reviews;
@@ -113,29 +113,29 @@ public class TouristDestination implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRef getProvince() {
         return province;
     }
 
-    public TouristDestination province(String province) {
+    public TouristDestination province(ProvinceRef province) {
         this.province = province;
         return this;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(ProvinceRef province) {
         this.province = province;
     }
 
-    public String getAttributes() {
+    public AttributeRef[] getAttributes() {
         return attributes;
     }
 
-    public TouristDestination attributes(String attributes) {
+    public TouristDestination attributes(AttributeRef[] attributes) {
         this.attributes = attributes;
         return this;
     }
 
-    public void setAttributes(String attributes) {
+    public void setAttributes(AttributeRef[] attributes) {
         this.attributes = attributes;
     }
 
@@ -181,8 +181,7 @@ public class TouristDestination implements Serializable {
             ", description='" + getDescription() + "'" +
             ", photos='" + getPhotos() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
-            ", attributes='" + getAttributes() + "'" +
+            ", province='" + getProvince().toString() + "'" +
             ", reviews='" + getReviews() + "'" +
             "}";
     }

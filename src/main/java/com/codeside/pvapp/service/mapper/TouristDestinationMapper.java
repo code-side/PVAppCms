@@ -8,9 +8,9 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity TouristDestination and its DTO TouristDestinationDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {ProvinceRefMapper.class, AttributeRefMapper.class})
 public interface TouristDestinationMapper extends EntityMapper <TouristDestinationDTO, TouristDestination> {
-    
-    
+
+
 
 }
