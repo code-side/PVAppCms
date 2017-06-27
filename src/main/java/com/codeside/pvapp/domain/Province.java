@@ -37,7 +37,7 @@ public class Province implements Serializable {
     private List<String> cantons = new ArrayList<>();
 
     @Field("emergency_contacts")
-    private String emergencyContacts;
+    private EmergencyContactRef[] emergencyContacts;
 
     public String getId() {
         return id;
@@ -125,16 +125,16 @@ public class Province implements Serializable {
         this.cantons = cantons;
     }
 
-    public String getEmergencyContacts() {
+    public EmergencyContactRef[] getEmergencyContacts() {
         return emergencyContacts;
     }
 
-    public Province emergencyContacts(String emergencyContacts) {
+    public Province emergencyContacts(EmergencyContactRef[] emergencyContacts) {
         this.emergencyContacts = emergencyContacts;
         return this;
     }
 
-    public void setEmergencyContacts(String emergencyContacts) {
+    public void setEmergencyContacts(EmergencyContactRef[] emergencyContacts) {
         this.emergencyContacts = emergencyContacts;
     }
 
@@ -167,8 +167,7 @@ public class Province implements Serializable {
             ", history='" + getHistory() + "'" +
             ", culture='" + getCulture() + "'" +
             ", photo='" + getPhoto() + "'" +
-            ", cantons='" + getCantons().size() + "'" +
-            ", emergencyContacts='" + getEmergencyContacts() + "'" +
+            ", cantons='" + getCantons().size() + "'" +        
             "}";
     }
 }

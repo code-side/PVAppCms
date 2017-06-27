@@ -38,9 +38,18 @@
                 [(ngModel)]="touristicInterest.address"  />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.province" for="field_province">Province</label>
-            <input type="text" class="form-control" name="province" id="field_province"
-                [(ngModel)]="touristicInterest.province"  />
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.province" for="field_province">Province</label>
+            <select [(ngModel)]="selectedProvince" (change)="saveProvinceRef('province')" class="form-control" name="province" id="field_province">
+                <option *ngFor="let p of provinces" [ngValue]="p">{{p.name}}</option>
+            </select>
+        </div>
+        <div *ngIf="selectedProvince !== undefined">
+            <div class="form-group">
+                <label class="form-control-label" for="field_provice_canton">Canton</label>
+                <select  [(ngModel)]= "selectedCanton" (change)="saveProvinceRef('canton')" class="form-control" name="canton" id="field_provice_canton">
+                    <option *ngFor="let c of selectedProvince.cantons" [ngValue]="c">{{c}}</option>
+                </select>
+            </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.reviews" for="field_reviews">Reviews</label>

@@ -32,7 +32,7 @@ public class TouristicInterest implements Serializable {
     private String address;
 
     @Field("province")
-    private String province;
+    private ProvinceRef province;
 
     @Field("reviews")
     private String reviews;
@@ -110,16 +110,16 @@ public class TouristicInterest implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRef getProvince() {
         return province;
     }
 
-    public TouristicInterest province(String province) {
+    public TouristicInterest province(ProvinceRef province) {
         this.province = province;
         return this;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(ProvinceRef province) {
         this.province = province;
     }
 
@@ -165,7 +165,6 @@ public class TouristicInterest implements Serializable {
             ", workingHours='" + getWorkingHours() + "'" +
             ", contact='" + getContact() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
             ", reviews='" + getReviews() + "'" +
             "}";
     }

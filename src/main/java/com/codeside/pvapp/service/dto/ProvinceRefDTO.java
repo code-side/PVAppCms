@@ -61,7 +61,7 @@ public class ProvinceRefDTO implements Serializable {
             return false;
         }
         return Objects.equals(getId(), provinceRefDTO.getId());
-    }
+    } 
 
     @Override
     public int hashCode() {
