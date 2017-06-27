@@ -54,14 +54,14 @@ export class TouristDestinationDialogComponent implements OnInit {
     }
 
     private onSuccess(data, headers) {
-        this.provinces = data;  
+        this.provinces = data;
         if(this.touristDestination.id === undefined){
             this.touristDestination.province = new ProvinceRef();
             this.touristDestination.attributes = [];
             }
-        else
+        else{
             this.findProvince();
-
+        }
     }
 
 
@@ -152,6 +152,10 @@ export class TouristDestinationDialogComponent implements OnInit {
     }
     removeAttribute(i: number){
         this.touristDestination.attributes.splice(i,1);
+        if(this.isEditAtt){
+            this.attribute = new AttributeRef();
+            this.isEditAtt = false;
+        }
     }
     cancelEdit(){
         this.attribute = new AttributeRef();
