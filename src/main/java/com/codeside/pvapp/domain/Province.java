@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A Province.
@@ -32,7 +34,7 @@ public class Province implements Serializable {
     private String photo;
 
     @Field("cantons")
-    private String cantons;
+    private List<String> cantons = new ArrayList<>();
 
     @Field("emergency_contacts")
     private String emergencyContacts;
@@ -110,16 +112,16 @@ public class Province implements Serializable {
         this.photo = photo;
     }
 
-    public String getCantons() {
+    public List<String> getCantons() {
         return cantons;
     }
 
-    public Province cantons(String cantons) {
+    public Province cantons(List<String> cantons) {
         this.cantons = cantons;
         return this;
     }
 
-    public void setCantons(String cantons) {
+    public void setCantons(List<String> cantons) {
         this.cantons = cantons;
     }
 
@@ -165,7 +167,7 @@ public class Province implements Serializable {
             ", history='" + getHistory() + "'" +
             ", culture='" + getCulture() + "'" +
             ", photo='" + getPhoto() + "'" +
-            ", cantons='" + getCantons() + "'" +
+            ", cantons='" + getCantons().size() + "'" +
             ", emergencyContacts='" + getEmergencyContacts() + "'" +
             "}";
     }

@@ -21,7 +21,7 @@ public class TicoStopDTO implements Serializable {
 
     private String address;
 
-    private String province;
+    private ProvinceRefDTO province;
 
     public String getId() {
         return id;
@@ -71,11 +71,11 @@ public class TicoStopDTO implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRefDTO getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(ProvinceRefDTO province) {
         this.province = province;
     }
 
@@ -109,7 +109,7 @@ public class TicoStopDTO implements Serializable {
             ", coordinates='" + getCoordinates() + "'" +
             ", photo='" + getPhoto() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
+            ", province='" + getProvince().toString() + "'" +
             "}";
     }
 }

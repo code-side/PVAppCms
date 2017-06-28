@@ -11,7 +11,6 @@ export class ProvincePopupService {
         private modalService: NgbModal,
         private router: Router,
         private provinceService: ProvinceService
-
     ) {}
 
     open(component: Component, id?: number | any): NgbModalRef {

@@ -18,7 +18,8 @@
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.ticoStop.photo">Photo</span></dt>
         <dd>
-            <span>{{ticoStop.photo}}</span>
+            <span class="row">{{ticoStop.photo}}</span>
+            <span class="row"><img src="{{ticoStop.photo !== null ? ticoStop.photo:NO_IMAGE}}" alt="{{ticoStop.name}}" width="150" height="150"/></span>
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.ticoStop.address">Address</span></dt>
         <dd>
@@ -26,7 +27,7 @@
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.ticoStop.province">Province</span></dt>
         <dd>
-            <span>{{ticoStop.province}}</span>
+            <span>{{ticoStop.province.name}}, {{ticoStop.province.canton}}</span>
         </dd>
     </dl>
 

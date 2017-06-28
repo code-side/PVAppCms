@@ -32,7 +32,7 @@ public class TicoStop implements Serializable {
     private String address;
 
     @Field("province")
-    private String province;
+    private ProvinceRef province;
 
     public String getId() {
         return id;
@@ -107,16 +107,16 @@ public class TicoStop implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRef getProvince() {
         return province;
     }
 
-    public TicoStop province(String province) {
+    public TicoStop province(ProvinceRef province) {
         this.province = province;
         return this;
     }
-
-    public void setProvince(String province) {
+    
+    public void setProvince(ProvinceRef province) {
         this.province = province;
     }
 
@@ -149,7 +149,7 @@ public class TicoStop implements Serializable {
             ", coordinates='" + getCoordinates() + "'" +
             ", photo='" + getPhoto() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
+            ", province='" + getProvince().toString() + "'" +
             "}";
     }
 }

@@ -1,8 +1,9 @@
 package com.codeside.pvapp.service.dto;
 
-
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A DTO for the Province entity.
@@ -21,7 +22,7 @@ public class ProvinceDTO implements Serializable {
 
     private String photo;
 
-    private String cantons;
+    private List<String> cantons = new ArrayList<>();
 
     private String emergencyContacts;
 
@@ -73,11 +74,11 @@ public class ProvinceDTO implements Serializable {
         this.photo = photo;
     }
 
-    public String getCantons() {
+    public List<String> getCantons() {
         return cantons;
     }
 
-    public void setCantons(String cantons) {
+    public void setCantons(List<String> cantons) {
         this.cantons = cantons;
     }
 
@@ -119,7 +120,7 @@ public class ProvinceDTO implements Serializable {
             ", history='" + getHistory() + "'" +
             ", culture='" + getCulture() + "'" +
             ", photo='" + getPhoto() + "'" +
-            ", cantons='" + getCantons() + "'" +
+            ", cantons='" + getCantons().size() + "'" +
             ", emergencyContacts='" + getEmergencyContacts() + "'" +
             "}";
     }

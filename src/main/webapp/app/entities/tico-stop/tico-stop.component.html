@@ -32,9 +32,9 @@
                 <td>{{ticoStop.name}}</td>
                 <td>{{ticoStop.historicalReview}}</td>
                 <td>{{ticoStop.coordinates}}</td>
-                <td>{{ticoStop.photo}}</td>
+                <td><img src="{{ticoStop.photo!==null ? ticoStop.photo:NO_IMAGE}}" alt="{{ticoStop.name}}" width="75" height="75"/></td>
                 <td>{{ticoStop.address}}</td>
-                <td>{{ticoStop.province}}</td>
+                <td>{{ticoStop.province.name}}, {{ticoStop.province.canton}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

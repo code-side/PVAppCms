@@ -5,10 +5,15 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { ResponseWrapper } from '../../shared';
 
 import { TicoStop } from './tico-stop.model';
 import { TicoStopPopupService } from './tico-stop-popup.service';
 import { TicoStopService } from './tico-stop.service';
+
+import { Province } from '../province/province.model';
+import { ProvinceRef } from '../province/province-ref.model';
+import { ProvinceService } from '../province/province.service';
 
 @Component({
     selector: 'jhi-tico-stop-dialog',
@@ -17,11 +22,16 @@ import { TicoStopService } from './tico-stop.service';
 export class TicoStopDialogComponent implements OnInit {
 
     ticoStop: TicoStop;
+    provinces: Province[];
+    provincesName: String[];
+    selectedProvince: String;
+    cantons: String[];
     authorities: any[];
     isSaving: boolean;
 
     constructor(
         public activeModal: NgbActiveModal,
+        private provinceService: ProvinceService,
         private alertService: JhiAlertService,
         private ticoStopService: TicoStopService,
         private eventManager: JhiEventManager
@@ -31,10 +41,30 @@ export class TicoStopDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.provinceService.query().subscribe(
+            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+
+    private onSuccess(data, headers) {
+        this.provinces = data;
+        this.provincesName = [];
+        this.provinces.forEach((x) => this.provincesName.push(x.name));
+        if (this.ticoStop.id !== undefined) {
+            this.selectedProvince = this.ticoStop.province.name;
+            this.cantons = this.provinces.find((x) => x.name === this.selectedProvince).cantons;
+        }
     }
 
     clear() {
         this.activeModal.dismiss('cancel');
+    }
+
+    updateCantons() {
+      const province = this.provinces.find((x) => x.name === this.selectedProvince);
+      this.ticoStop.province = new ProvinceRef(province.id, province.name);
+      this.cantons = province.cantons;
     }
 
     save() {

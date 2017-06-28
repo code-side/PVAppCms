@@ -1,4 +1,4 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+<form name="editForm" role="form" (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
         <h4 class="modal-title" id="myTicoStopLabel" jhiTranslate="pvAppCmsApp.ticoStop.home.createOrEditLabel">Create or edit a Tico Stop</h4>
@@ -14,33 +14,40 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.ticoStop.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
+            <input required minlength="4" type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="ticoStop.name"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.ticoStop.historicalReview" for="field_historicalReview">Historical Review</label>
-            <input type="text" class="form-control" name="historicalReview" id="field_historicalReview"
+            <input required type="text" class="form-control" name="historicalReview" id="field_historicalReview"
                 [(ngModel)]="ticoStop.historicalReview"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.ticoStop.coordinates" for="field_coordinates">Coordinates</label>
-            <input type="text" class="form-control" name="coordinates" id="field_coordinates"
+            <input required type="text" class="form-control" name="coordinates" id="field_coordinates"
                 [(ngModel)]="ticoStop.coordinates"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.ticoStop.photo" for="field_photo">Photo</label>
-            <input type="text" class="form-control" name="photo" id="field_photo"
+            <input required type="text" class="form-control" name="photo" id="field_photo"
                 [(ngModel)]="ticoStop.photo"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.ticoStop.address" for="field_address">Address</label>
-            <input type="text" class="form-control" name="address" id="field_address"
+            <input required type="text" class="form-control" name="address" id="field_address"
                 [(ngModel)]="ticoStop.address"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.ticoStop.province" for="field_province">Province</label>
-            <input type="text" class="form-control" name="province" id="field_province"
-                [(ngModel)]="ticoStop.province"  />
+            <select [(ngModel)]="selectedProvince" required (change)="updateCantons()" class="form-control" name="province" id="field_province">
+               <option *ngFor="let provName of provincesName" [ngValue]="provName">{{provName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_province_canton">Canton</label>
+            <select [(ngModel)]="ticoStop.province.canton" required class="form-control" name="canton" id="field_province_canton">
+               <option *ngFor="let cantonName of cantons" [ngValue]="cantonName">{{cantonName}}</option>
+            </select>
         </div>
 
     </div>
