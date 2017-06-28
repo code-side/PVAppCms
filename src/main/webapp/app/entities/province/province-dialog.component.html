@@ -14,7 +14,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.province.name" for="field_name">Name</label>
-            <input type="text" class="form-control" required name="name" id="field_name"
+
+            <input required type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="province.name"  />
         </div>
         <div class="form-group">
@@ -37,7 +38,7 @@
             <input type="text" class="form-control" required name="photo" id="field_photo"
                 [(ngModel)]="province.photo"  />
         </div>
-
+        
         <div>
           <div class="form-group">
               <h4>Emergency Contacts</h4>

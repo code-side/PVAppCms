@@ -6,12 +6,106 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A PVAppUser.
  */
 @Document(collection = "pv_app_user")
 public class PVAppUser implements Serializable {
+
+    public static class TouristDestination implements Serializable {
+
+        @Field("tourist_destination_id")
+        private String touristDestinationId;
+
+        private String name;
+
+        public String getTouristDestinationId() {
+          return this.touristDestinationId;
+        }
+
+        public void setTouristDestinationId(String touristDestinationId){
+          this.touristDestinationId = touristDestinationId;
+        }
+
+        public String getName() {
+          return this.name;
+        }
+
+        public void setName(String name){
+          this.name = name;
+        }
+
+        @Override
+        public String toString() {
+          return "TouristDestination{" +
+              "touristDestinationId=" + this.touristDestinationId +
+              ", name='" + this.name + "'" +
+              "}";
+        }
+    };
+
+    public static class Achievement implements Serializable{
+
+        private String name;
+        private String description;
+        private String progress;
+        private String goal;
+        private String logo;
+
+        public String getName() {
+      		return this.name;
+      	}
+
+      	public void setName(String name) {
+      		this.name = name;
+      	}
+
+      	public String getDescription() {
+      		return this.description;
+      	}
+
+      	public void setDescription(String description) {
+      		this.description = description;
+      	}
+
+      	public String getProgress() {
+      		return this.progress;
+      	}
+
+      	public void setProgress(String progress) {
+      		this.progress = progress;
+      	}
+
+      	public String getGoal() {
+      		return this.goal;
+      	}
+
+      	public void setGoal(String goal) {
+      		this.goal = goal;
+      	}
+
+      	public String getLogo() {
+      		return this.logo;
+      	}
+
+      	public void setLogo(String logo) {
+      		this.logo = logo;
+      	}
+
+        @Override
+        public String toString() {
+          return "Achievement{" +
+              "name=" + this.name +
+              ", description='" + this.description + "'" +
+              ", progress=" + this.progress +
+              ", goal='" + this.goal + "'" +
+              ", logo =" + this.logo +
+              "}";
+        }
+    };
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,10 +139,10 @@ public class PVAppUser implements Serializable {
     private Integer status;
 
     @Field("favorite_list")
-    private String favoriteList;
+    private List<TouristDestination> favoriteList = new ArrayList<>();
 
     @Field("achievements")
-    private String achievements;
+    private List<Achievement> achievements = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -175,29 +269,29 @@ public class PVAppUser implements Serializable {
         this.status = status;
     }
 
-    public String getFavoriteList() {
+    public List<TouristDestination> getFavoriteList() {
         return favoriteList;
     }
 
-    public PVAppUser favoriteList(String favoriteList) {
+    public PVAppUser favoriteList(List<TouristDestination> favoriteList) {
         this.favoriteList = favoriteList;
         return this;
     }
 
-    public void setFavoriteList(String favoriteList) {
+    public void setFavoriteList(List<TouristDestination> favoriteList) {
         this.favoriteList = favoriteList;
     }
 
-    public String getAchievements() {
+    public List<Achievement> getAchievements() {
         return achievements;
     }
 
-    public PVAppUser achievements(String achievements) {
+    public PVAppUser achievements(List<Achievement> achievements) {
         this.achievements = achievements;
         return this;
     }
 
-    public void setAchievements(String achievements) {
+    public void setAchievements(List<Achievement> achievements) {
         this.achievements = achievements;
     }
 
@@ -234,8 +328,6 @@ public class PVAppUser implements Serializable {
             ", gender='" + getGender() + "'" +
             ", photo='" + getPhoto() + "'" +
             ", status='" + getStatus() + "'" +
-            ", favoriteList='" + getFavoriteList() + "'" +
-            ", achievements='" + getAchievements() + "'" +
             "}";
     }
 }

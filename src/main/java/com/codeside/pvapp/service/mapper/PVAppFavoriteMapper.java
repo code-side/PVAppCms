@@ -8,9 +8,9 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity PVAppUser and its DTO PVAppUserDTO.
  */
- 
-@Mapper(componentModel = "spring", uses = {PVAppAchievementMapper.class,PVAppFavoriteMapper.class})
-public interface PVAppUserMapper extends EntityMapper <PVAppUserDTO, PVAppUser> {
+
+@Mapper(componentModel = "spring", uses = {})
+public interface PVAppFavoriteMapper extends EntityMapper <PVAppUserDTO.TouristDestination, PVAppUser.TouristDestination> {
 
 
 

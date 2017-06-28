@@ -1,14 +1,105 @@
 package com.codeside.pvapp.service.dto;
 
-
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A DTO for the PVAppUser entity.
  */
 public class PVAppUserDTO implements Serializable {
+
+    public static class TouristDestination implements Serializable {
+
+        private String touristDestinationId;
+        private String name;
+
+        public String getTouristDestinationId() {
+         return this.touristDestinationId;
+        }
+
+        public void setTouristDestinationId(String touristDestinationId){
+         this.touristDestinationId = touristDestinationId;
+        }
+
+        public String getName() {
+         return this.name;
+        }
+
+        public void setName(String name){
+         this.name = name;
+        }
+
+        @Override
+        public String toString() {
+         return "TouristDestination{" +
+             "touristDestinationId=" + this.touristDestinationId +
+             ", name='" + this.name + "'" +
+             "}";
+        }
+     };
+
+    public static class Achievement implements Serializable {
+        private String name;
+        private String description;
+        private String progress;
+        private String goal;
+        private String logo;
+
+      	public String getName() {
+      		return this.name;
+      	}
+
+      	public void setName(String name) {
+      		this.name = name;
+      	}
+
+      	public String getDescription() {
+      		return this.description;
+      	}
+
+      	public void setDescription(String description) {
+      		this.description = description;
+      	}
+
+      	public String getProgress() {
+      		return this.progress;
+      	}
+
+      	public void setProgress(String progress) {
+      		this.progress = progress;
+      	}
+
+
+      	public String getGoal() {
+      		return this.goal;
+      	}
+
+      	public void setGoal(String goal) {
+      		this.goal = goal;
+      	}
+
+      	public String getLogo() {
+      		return this.logo;
+      	}
+
+      	public void setLogo(String logo) {
+      		this.logo = logo;
+      	}
+
+        @Override
+        public String toString() {
+          return "Achievement{" +
+              "name=" + this.name +
+              ", description='" + this.description + "'" +
+              ", progress=" + this.progress +
+              ", goal='" + this.goal + "'" +
+              ", logo =" + this.logo +
+              "}";
+        }
+    };
 
     private String id;
 
@@ -30,9 +121,9 @@ public class PVAppUserDTO implements Serializable {
 
     private Integer status;
 
-    private String favoriteList;
+    private List<TouristDestination> favoriteList;
 
-    private String achievements;
+    private List<Achievement> achievements;
 
     public String getId() {
         return id;
@@ -114,19 +205,19 @@ public class PVAppUserDTO implements Serializable {
         this.status = status;
     }
 
-    public String getFavoriteList() {
+    public List<TouristDestination> getFavoriteList() {
         return favoriteList;
     }
 
-    public void setFavoriteList(String favoriteList) {
+    public void setFavoriteList(List<TouristDestination> favoriteList) {
         this.favoriteList = favoriteList;
     }
 
-    public String getAchievements() {
+    public List<Achievement> getAchievements() {
         return achievements;
     }
 
-    public void setAchievements(String achievements) {
+    public void setAchievements(List<Achievement> achievements) {
         this.achievements = achievements;
     }
 
@@ -164,8 +255,6 @@ public class PVAppUserDTO implements Serializable {
             ", gender='" + getGender() + "'" +
             ", photo='" + getPhoto() + "'" +
             ", status='" + getStatus() + "'" +
-            ", favoriteList='" + getFavoriteList() + "'" +
-            ", achievements='" + getAchievements() + "'" +
             "}";
     }
-}
+  }
