@@ -14,46 +14,52 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
+            <input required minlength="4" type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="touristicInterest.name"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.type" for="field_type">Type</label>
-            <input type="text" class="form-control" name="type" id="field_type"
-                [(ngModel)]="touristicInterest.type"  />
+            <select required class="form-control" name="type" id="field_type" [(ngModel)]="touristicInterest.type">
+              <option *ngFor="let tiType of typeOfTouristInterest" [value]="tiType.type">{{tiType.type}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_photo">Photo</label>
+            <input required minlength="4" type="text" class="form-control" name="photo" id="field_photo"
+                [(ngModel)]="touristicInterest.photo"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.workingHours" for="field_workingHours">Working Hours</label>
-            <input type="text" class="form-control" name="workingHours" id="field_workingHours"
+            <input required minlength="4" type="text" class="form-control" name="workingHours" id="field_workingHours"
                 [(ngModel)]="touristicInterest.workingHours"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.contact" for="field_contact">Contact</label>
-            <input type="text" class="form-control" name="contact" id="field_contact"
+            <input required minlength="4" type="text" class="form-control" name="contact" id="field_contact"
                 [(ngModel)]="touristicInterest.contact"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.address" for="field_address">Address</label>
-            <input type="text" class="form-control" name="address" id="field_address"
+            <input required minlength="4" type="text" class="form-control" name="address" id="field_address"
                 [(ngModel)]="touristicInterest.address"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.province" for="field_province">Province</label>
-            <select [(ngModel)]="selectedProvince" (change)="saveProvinceRef('province')" class="form-control" name="province" id="field_province">
+            <select required [(ngModel)]="selectedProvince" (change)="saveProvinceRef('province')" class="form-control" name="province" id="field_province">
                 <option *ngFor="let p of provinces" [ngValue]="p">{{p.name}}</option>
             </select>
         </div>
         <div *ngIf="selectedProvince !== undefined">
             <div class="form-group">
                 <label class="form-control-label" for="field_provice_canton">Canton</label>
-                <select  [(ngModel)]= "selectedCanton" (change)="saveProvinceRef('canton')" class="form-control" name="canton" id="field_provice_canton">
+                <select required [(ngModel)]= "selectedCanton" (change)="saveProvinceRef('canton')" class="form-control" name="canton" id="field_provice_canton">
                     <option *ngFor="let c of selectedProvince.cantons" [ngValue]="c">{{c}}</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.reviews" for="field_reviews">Reviews</label>
-            <input type="text" class="form-control" name="reviews" id="field_reviews"
+            <input required minlength="4" type="text" class="form-control" name="reviews" id="field_reviews"
                 [(ngModel)]="touristicInterest.reviews"  />
         </div>
 

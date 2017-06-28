@@ -37,6 +37,9 @@ public class TouristicInterest implements Serializable {
     @Field("reviews")
     private String reviews;
 
+    @Field("photo")
+    private String photo;
+
     public String getId() {
         return id;
     }
@@ -136,6 +139,21 @@ public class TouristicInterest implements Serializable {
         this.reviews = reviews;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public TouristicInterest photo(String photo) {
+        this.photo = photo;
+        return this;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,6 +184,7 @@ public class TouristicInterest implements Serializable {
             ", contact='" + getContact() + "'" +
             ", address='" + getAddress() + "'" +
             ", reviews='" + getReviews() + "'" +
+            ", photoURL='" + getPhoto()  + "'" +
             "}";
     }
 }

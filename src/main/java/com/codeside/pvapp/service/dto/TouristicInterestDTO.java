@@ -25,6 +25,8 @@ public class TouristicInterestDTO implements Serializable {
 
     private String reviews;
 
+    private String photo;
+
     public String getId() {
         return id;
     }
@@ -87,6 +89,14 @@ public class TouristicInterestDTO implements Serializable {
 
     public void setReviews(String reviews) {
         this.reviews = reviews;
+    }
+
+    public String getPhoto(){
+      return photo;
+    }
+
+    public void setPhoto(String photo){
+      this.photo = photo;
     }
 
     @Override

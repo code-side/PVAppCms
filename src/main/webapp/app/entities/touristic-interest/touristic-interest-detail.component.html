@@ -26,11 +26,11 @@
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.touristicInterest.province">Province</span></dt>
         <dd>
-            <span>{{touristicInterest.province}}</span>
+            <span>{{touristicInterest.province.name}}</span>
         </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristicInterest.reviews">Reviews</span></dt>
+        <dt><span>Photo</span></dt>
         <dd>
-            <span>{{touristicInterest.reviews}}</span>
+           <img height="200" width="200" [src]="touristicInterest.photo">      
         </dd>
     </dl>
 

@@ -11,6 +11,7 @@ export class TouristicInterest implements BaseEntity {
         public address?: string,
         public province?: ProvinceRef,
         public reviews?: string,
+        public photo?: string,
     ) {
     }
 }
