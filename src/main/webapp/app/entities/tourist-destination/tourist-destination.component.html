@@ -23,8 +23,6 @@
             <th jhiSortBy="photos"><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Photos</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.touristDestination.address">Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.touristDestination.province">Province</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="attributes"><span jhiTranslate="pvAppCmsApp.touristDestination.attributes">Attributes</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="reviews"><span jhiTranslate="pvAppCmsApp.touristDestination.reviews">Reviews</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -34,11 +32,9 @@
                 <td>{{touristDestination.name}}</td>
                 <td>{{touristDestination.coordinates}}</td>
                 <td>{{touristDestination.description}}</td>
-                <td>{{touristDestination.photos}}</td>
+                <td><img height="200" width="200" [src]="touristDestination.photos[0]"></td>
                 <td>{{touristDestination.address}}</td>
-                <td>{{touristDestination.province}}</td>
-                <td>{{touristDestination.attributes}}</td>
-                <td>{{touristDestination.reviews}}</td>
+                <td>{{touristDestination.province.name}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

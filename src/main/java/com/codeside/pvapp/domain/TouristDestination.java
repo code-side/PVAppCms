@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A TouristDestination.
@@ -26,16 +28,16 @@ public class TouristDestination implements Serializable {
     private String description;
 
     @Field("photos")
-    private String photos;
+    private List<String> photos = new ArrayList<>();
 
     @Field("address")
     private String address;
 
     @Field("province")
-    private String province;
+    private ProvinceRef province;
 
     @Field("attributes")
-    private String attributes;
+    private AttributeRef[] attributes;
 
     @Field("reviews")
     private String reviews;
@@ -87,16 +89,16 @@ public class TouristDestination implements Serializable {
         this.description = description;
     }
 
-    public String getPhotos() {
+    public List<String> getPhotos() {
         return photos;
     }
 
-    public TouristDestination photos(String photos) {
+    public TouristDestination photos(List<String> photos) {
         this.photos = photos;
         return this;
     }
 
-    public void setPhotos(String photos) {
+    public void setPhotos(List<String> photos) {
         this.photos = photos;
     }
 
@@ -113,29 +115,29 @@ public class TouristDestination implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRef getProvince() {
         return province;
     }
 
-    public TouristDestination province(String province) {
+    public TouristDestination province(ProvinceRef province) {
         this.province = province;
         return this;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(ProvinceRef province) {
         this.province = province;
     }
 
-    public String getAttributes() {
+    public AttributeRef[] getAttributes() {
         return attributes;
     }
 
-    public TouristDestination attributes(String attributes) {
+    public TouristDestination attributes(AttributeRef[] attributes) {
         this.attributes = attributes;
         return this;
     }
 
-    public void setAttributes(String attributes) {
+    public void setAttributes(AttributeRef[] attributes) {
         this.attributes = attributes;
     }
 
@@ -179,10 +181,9 @@ public class TouristDestination implements Serializable {
             ", name='" + getName() + "'" +
             ", coordinates='" + getCoordinates() + "'" +
             ", description='" + getDescription() + "'" +
-            ", photos='" + getPhotos() + "'" +
+            ", photos='" + getPhotos().size() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
-            ", attributes='" + getAttributes() + "'" +
+            ", province='" + getProvince().toString() + "'" +
             ", reviews='" + getReviews() + "'" +
             "}";
     }

@@ -24,7 +24,7 @@ public class ProvinceDTO implements Serializable {
 
     private List<String> cantons = new ArrayList<>();
 
-    private String emergencyContacts;
+    private EmergencyContactRefDTO[] emergencyContacts;
 
     public String getId() {
         return id;
@@ -82,11 +82,11 @@ public class ProvinceDTO implements Serializable {
         this.cantons = cantons;
     }
 
-    public String getEmergencyContacts() {
+    public EmergencyContactRefDTO[] getEmergencyContacts() {
         return emergencyContacts;
     }
 
-    public void setEmergencyContacts(String emergencyContacts) {
+    public void setEmergencyContacts(EmergencyContactRefDTO[] emergencyContacts) {
         this.emergencyContacts = emergencyContacts;
     }
 
@@ -121,7 +121,6 @@ public class ProvinceDTO implements Serializable {
             ", culture='" + getCulture() + "'" +
             ", photo='" + getPhoto() + "'" +
             ", cantons='" + getCantons().size() + "'" +
-            ", emergencyContacts='" + getEmergencyContacts() + "'" +
             "}";
     }
 }

@@ -3,6 +3,8 @@ package com.codeside.pvapp.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A DTO for the TouristDestination entity.
@@ -17,13 +19,13 @@ public class TouristDestinationDTO implements Serializable {
 
     private String description;
 
-    private String photos;
+    private List<String> photos = new ArrayList<>();
 
     private String address;
 
-    private String province;
+    private ProvinceRefDTO province;
 
-    private String attributes;
+    private AttributeRefDTO[] attributes;
 
     private String reviews;
 
@@ -59,11 +61,11 @@ public class TouristDestinationDTO implements Serializable {
         this.description = description;
     }
 
-    public String getPhotos() {
+    public List<String> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(String photos) {
+    public void setPhotos(List<String> photos) {
         this.photos = photos;
     }
 
@@ -75,19 +77,19 @@ public class TouristDestinationDTO implements Serializable {
         this.address = address;
     }
 
-    public String getProvince() {
+    public ProvinceRefDTO getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(ProvinceRefDTO province) {
         this.province = province;
     }
 
-    public String getAttributes() {
+    public AttributeRefDTO[] getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(String attributes) {
+    public void setAttributes(AttributeRefDTO[] attributes) {
         this.attributes = attributes;
     }
 
@@ -127,10 +129,9 @@ public class TouristDestinationDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", coordinates='" + getCoordinates() + "'" +
             ", description='" + getDescription() + "'" +
-            ", photos='" + getPhotos() + "'" +
+            ", photos='" + getPhotos().size() + "'" +
             ", address='" + getAddress() + "'" +
-            ", province='" + getProvince() + "'" +
-            ", attributes='" + getAttributes() + "'" +
+            ", province='" + getProvince().toString() + "'" +
             ", reviews='" + getReviews() + "'" +
             "}";
     }
