@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TicoStop } from './tico-stop.model';
 import { TicoStopService } from './tico-stop.service';
+import { ProvinceService } from './../province/province.service';
 
 @Injectable()
 export class TicoStopPopupService {
@@ -10,8 +11,8 @@ export class TicoStopPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private ticoStopService: TicoStopService
-
+        private ticoStopService: TicoStopService,
+        private provinceService: ProvinceService
     ) {}
 
     open(component: Component, id?: number | any): NgbModalRef {

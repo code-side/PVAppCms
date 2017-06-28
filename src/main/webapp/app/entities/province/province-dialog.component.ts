@@ -17,6 +17,7 @@ import { ProvinceService } from './province.service';
 export class ProvinceDialogComponent implements OnInit {
 
     province: Province;
+    cantons: String;
     authorities: any[];
     isSaving: boolean;
 
@@ -31,14 +32,20 @@ export class ProvinceDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        if (this.province !== null && this.province.cantons !== undefined) {
+            this.cantons = this.province.cantons.join();
+        }
     }
 
     clear() {
+        this.cantons = '';
         this.activeModal.dismiss('cancel');
     }
 
     save() {
         this.isSaving = true;
+        this.province.cantons = this.cantons.split(',');
+
         if (this.province.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.provinceService.update(this.province), false);
