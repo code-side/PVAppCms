@@ -27,6 +27,7 @@ export class TouristicInterestDialogComponent implements OnInit {
     provinces: Province[];
     selectedProvince: Province;
     selectedCanton: string;
+    typeOfTouristInterest: any[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -38,6 +39,7 @@ export class TouristicInterestDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.typeOfTouristInterest= this.initArrayOfTypes();
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.provinceService.query().subscribe(
@@ -118,11 +120,14 @@ export class TouristicInterestDialogComponent implements OnInit {
                          this.selectedCanton = canton;
                          break;
                      }
-                break;
                 }
+                break;
             }
         }
     }
+  initArrayOfTypes(){
+    return [{type:'Agencia de viajes'}, {type:'Rent a car'},{type:'Tours'},{type:'Hospedaje'}, {type:'Restaurante'}]
+  }
 }
 
 @Component({

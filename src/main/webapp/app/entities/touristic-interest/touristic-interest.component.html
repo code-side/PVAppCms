@@ -19,11 +19,12 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.touristicInterest.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="type"><span jhiTranslate="pvAppCmsApp.touristicInterest.type">Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="photo"><span>Photo</span><span class="fa fa-sort"></span></th>
             <th jhiSortBy="workingHours"><span jhiTranslate="pvAppCmsApp.touristicInterest.workingHours">Working Hours</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="contact"><span jhiTranslate="pvAppCmsApp.touristicInterest.contact">Contact</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.touristicInterest.address">Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.touristicInterest.province">Province</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="reviews"><span jhiTranslate="pvAppCmsApp.touristicInterest.reviews">Reviews</span> <span class="fa fa-sort"></span></th>
+
             <th></th>
             </tr>
             </thead>
@@ -32,11 +33,12 @@
                 <td><a [routerLink]="['../touristic-interest', touristicInterest.id ]">{{touristicInterest.id}}</a></td>
                 <td>{{touristicInterest.name}}</td>
                 <td>{{touristicInterest.type}}</td>
+                <td><img height="200" width="200" [src]="touristicInterest.photo"></td>
                 <td>{{touristicInterest.workingHours}}</td>
                 <td>{{touristicInterest.contact}}</td>
                 <td>{{touristicInterest.address}}</td>
                 <td>{{touristicInterest.province.name}}</td>
-                <td>{{touristicInterest.reviews}}</td>
+
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
