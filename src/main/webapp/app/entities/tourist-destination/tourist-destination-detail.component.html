@@ -31,13 +31,8 @@
         <dt><span jhiTranslate="pvAppCmsApp.touristDestination.attributes">Attributes</span></dt>
         <dd>
             <div *ngFor="let att of touristDestination.attributes" class="col-md-12">
-                <span><b>Pregunta:</b> {{att.name}} <b>Value:</b> {{att.value}}</span>
+                <span><b>Atributo:</b> {{att.name}}<br /><b>Valor:</b> {{att.value}}</span><br /><br />
             </div>
-
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.reviews">Reviews</span></dt>
-        <dd>
-            <span>{{touristDestination.reviews}}</span>
         </dd>
     </dl>
 

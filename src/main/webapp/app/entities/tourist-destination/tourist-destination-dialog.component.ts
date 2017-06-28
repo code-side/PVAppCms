@@ -13,9 +13,8 @@ import { TouristDestinationService } from './tourist-destination.service';
 
 import { Province } from '../province/province.model';
 import { ProvinceRef } from '../province/province-ref.model';
-import { ProvinceService } from '../province/province.service'
+import { ProvinceService } from '../province/province.service';
 import { AttributeRef } from './attribute-ref.model';
-
 
 @Component({
     selector: 'jhi-tourist-destination-dialog',
@@ -39,8 +38,7 @@ export class TouristDestinationDialogComponent implements OnInit {
         private touristDestinationService: TouristDestinationService,
         private eventManager: JhiEventManager,
         private provinceService: ProvinceService
-    ) {
-    }
+    ) { }
 
     ngOnInit() {
         this.isSaving = false;
@@ -56,17 +54,15 @@ export class TouristDestinationDialogComponent implements OnInit {
 
     private onSuccess(data, headers) {
         this.provinces = data;
-        if(this.touristDestination.id === undefined){
+        if (this.touristDestination.id === undefined) {
             this.touristDestination.province = new ProvinceRef();
             this.touristDestination.attributes = [];
             this.touristDestination.photos = [];
-            }
-        else{
+        }else {
             this.findProvince();
             this.photo = this.touristDestination.photos[0];
         }
     }
-
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -112,34 +108,35 @@ export class TouristDestinationDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
-    saveProvinceRef(action:any){
-        if(action === 'province'){
-            this.touristDestination.province.name = this.selectedProvince.name;
-            this.touristDestination.province.id = this.selectedProvince.id;
 
-        }else{
+    saveProvinceRef(action: any) {
+        if (action === 'province') {
+          this.touristDestination.province.name = this.selectedProvince.name;
+          this.touristDestination.province.id = this.selectedProvince.id;
+        }else {
             this.touristDestination.province.canton =  this.selectedCanton;
         }
     }
-    findProvince(){
-        for(let province of this.provinces){
-            if(province.id === this.touristDestination.province.id){
-                this.selectedProvince = province;
-                for(let canton of province.cantons){
-                    if(canton === this.touristDestination.province.canton){
-                         this.selectedCanton = canton;
-                         break;
-                     }
 
+    findProvince() {
+        for (const province of this.provinces) {
+            if (province.id === this.touristDestination.province.id) {
+                this.selectedProvince = province;
+                for (const canton of province.cantons) {
+                    if (canton === this.touristDestination.province.canton) {
+                      this.selectedCanton = canton;
+                      break;
+                     }
                 }
                 break;
             }
         }
     }
-    addAtribute(){
-        if(!this.isEditAtt)
-            this.touristDestination.attributes.push(this.attribute)
-        else{
+
+    addAtribute() {
+        if (!this.isEditAtt) {
+          this.touristDestination.attributes.push(this.attribute);
+        }else {
             this.touristDestination.attributes[this.indexToEdit].name = this.attribute.name;
             this.touristDestination.attributes[this.indexToEdit].value = this.attribute.value;
         }
@@ -147,25 +144,28 @@ export class TouristDestinationDialogComponent implements OnInit {
         this.isEditAtt = false;
 
     }
-    editAttribute(att: AttributeRef, i: number){
+
+    editAttribute(att: AttributeRef, i: number) {
         this.attribute.name = att.name;
         this.attribute.value = att.value;
         this.isEditAtt = true;
         this.indexToEdit = i;
-        console.log(this.attribute)
     }
-    removeAttribute(i: number){
-        this.touristDestination.attributes.splice(i,1);
-        if(this.isEditAtt){
-            this.attribute = new AttributeRef();
-            this.isEditAtt = false;
-        }
+
+    removeAttribute(i: number) {
+      this.touristDestination.attributes.splice(i, 1);
+      if (this.isEditAtt) {
+        this.attribute = new AttributeRef();
+        this.isEditAtt = false;
+      }
     }
-    cancelEdit(){
+
+    cancelEdit() {
         this.attribute = new AttributeRef();
         this.isEditAtt = !this.isEditAtt;
     }
-    savePhoto(){
+
+    savePhoto() {
         console.log(this.photo);
         this.touristDestination.photos[0] = this.photo;
     }
