@@ -45,17 +45,20 @@
               <input type="text" class="form-control" name="field_emergencyContact_name" id="field_emergencyContact_name"
                   [(ngModel)]="emergencyContact.name"  />
               <label class="form-control-label"  for="field_emergencyContacts_type">Type</label>
-              <input type="text" class="form-control" name="emergencyContacts_type" id="field_emergencyContacts_type"
-                  [(ngModel)]="emergencyContact.type"  />
+              <select class="form-control"  name="field_emergencyContact_type"
+              id="field_emergencyContact_type" [(ngModel)]="emergencyContact.type" >
+                  <option *ngFor="let ecType of typesOfEC" [value]="ecType.type">{{ecType.type}}</option>
+             </select>
               <label class="form-control-label" for="field_emergencyContacts_contact">Contact</label>
               <input type="text" class="form-control" name="emergencyContacts_contact" id="field_emergencyContacts_contact"
                   [(ngModel)]="emergencyContact.contact"  />
               <label class="form-control-label"  for="field_emergencyContacts_working-hours">Working hours</label>
               <input type="text" class="form-control" name="emergencyContacts_working_hours" id="field_emergencyContacts_working-hours"
-                  [(ngModel)]="emergencyContact.working_hours"  />
+                  [(ngModel)]="emergencyContact.workingHours"  />
             </div>
 
             <button type="button" class="btn btn-info" (click)="addEmergencyContact()" [disabled]="(emergencyContact.name === undefined)">{{isEditEC?'Edit emergency contact': 'Add emergency contact'}}</button>
+                <button type="button" class="btn btn-danger" (click)="cancelEdit()"[hidden]="!isEditEC">Cancel</button>
             <div  class= "row" >
                 <div *ngFor="let em of province.emergencyContacts; let i=index">
                     <label class="btn btn-link" (click)="editEmergencyContact(em, i)">{{em.name}}</label>

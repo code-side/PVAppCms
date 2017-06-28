@@ -24,7 +24,7 @@ public class EmergencyContactRef implements Serializable {
   private String contact;
 
   @Field("working_hours")
-  private String working_hours;
+  private String workingHours;
 
   public String getName(){
     return name;
@@ -60,15 +60,15 @@ public class EmergencyContactRef implements Serializable {
   public void setContact(String contact){
     this.contact = contact;
   }
-  public String getWorking_Hours(){
-    return working_hours;
+  public String getWorkingHours(){
+    return workingHours;
   }
-  public EmergencyContactRef working_hours(String working_hours){
-    this.working_hours = working_hours;
+  public EmergencyContactRef workingHours(String workingHours){
+    this.workingHours = workingHours;
     return this;
   }
-  public void setWorking_Hours(String working_hours){
-    this.working_hours = working_hours;
+  public void setWorkingHours(String workingHours){
+    this.workingHours = workingHours;
   }
 
 
@@ -78,7 +78,7 @@ public class EmergencyContactRef implements Serializable {
     ", name= '" + getName() + "'" +
     ", type= '" + getType() + "'" +
     ", contact= '" + getContact() + "'" +
-    ", working_hours= '" + getWorking_Hours() + "'" +
+    ", workingHours= '" + getWorkingHours() + "'" +
     "}";
   }
 

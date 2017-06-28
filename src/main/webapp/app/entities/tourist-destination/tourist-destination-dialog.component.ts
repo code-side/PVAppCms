@@ -32,7 +32,7 @@ export class TouristDestinationDialogComponent implements OnInit {
     attribute: AttributeRef;
     isEditAtt: boolean;
     indexToEdit: number;
-
+    photo: string;
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
@@ -47,6 +47,7 @@ export class TouristDestinationDialogComponent implements OnInit {
         this.isEditAtt = false;
         this.attribute = new AttributeRef();
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.photo = '';
         this.provinceService.query().subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
@@ -58,9 +59,11 @@ export class TouristDestinationDialogComponent implements OnInit {
         if(this.touristDestination.id === undefined){
             this.touristDestination.province = new ProvinceRef();
             this.touristDestination.attributes = [];
+            this.touristDestination.photos = [];
             }
         else{
             this.findProvince();
+            this.photo = this.touristDestination.photos[0];
         }
     }
 
@@ -113,7 +116,7 @@ export class TouristDestinationDialogComponent implements OnInit {
         if(action === 'province'){
             this.touristDestination.province.name = this.selectedProvince.name;
             this.touristDestination.province.id = this.selectedProvince.id;
-            console.log('change')
+
         }else{
             this.touristDestination.province.canton =  this.selectedCanton;
         }
@@ -127,8 +130,9 @@ export class TouristDestinationDialogComponent implements OnInit {
                          this.selectedCanton = canton;
                          break;
                      }
-                break;
+
                 }
+                break;
             }
         }
     }
@@ -160,6 +164,10 @@ export class TouristDestinationDialogComponent implements OnInit {
     cancelEdit(){
         this.attribute = new AttributeRef();
         this.isEditAtt = !this.isEditAtt;
+    }
+    savePhoto(){
+        console.log(this.photo);
+        this.touristDestination.photos[0] = this.photo;
     }
 }
 
