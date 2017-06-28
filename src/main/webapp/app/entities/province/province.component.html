@@ -30,10 +30,10 @@
                 <td><a [routerLink]="['../province', province.id ]">{{province.id}}</a></td>
                 <td>{{province.name}}</td>
                 <td>{{province.coordinates}}</td>
-                <td>{{province.history}}</td>
-                <td>{{province.culture}}</td>
-                <td>{{province.photo}}</td>
-                
+                <td>{{province.history | slice:0:100}}</td>
+                <td>{{province.culture | slice:0:100}}</td>
+                <td><img src="{{province.photo!==null ? province.photo:NO_IMAGE}}" alt="{{province.name}}" width="75" height="75"/></td>
+                <td>{{province.cantons}}</td>        
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

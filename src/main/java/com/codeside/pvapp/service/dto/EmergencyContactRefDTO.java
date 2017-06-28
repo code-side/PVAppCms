@@ -15,7 +15,7 @@ public class EmergencyContactRefDTO implements Serializable {
 
   private String contact;
 
-  private String working_hours;
+  private String workingHours;
 
 
   public String getName(){
@@ -57,16 +57,16 @@ public class EmergencyContactRefDTO implements Serializable {
     this.contact = contact;
   }
 
-  public String getWorking_Hours(){
-    return working_hours;
+  public String getWorkingHours(){
+    return workingHours;
   }
 
-  public EmergencyContactRefDTO working_hours (String working_hours){
-    this.working_hours = working_hours;
+  public EmergencyContactRefDTO workingHours(String workingHours){
+    this.workingHours = workingHours;
     return this;
   }
-  public void setWorking_Hours(String working_hours){
-    this.working_hours = working_hours;
+  public void setWorkingHours(String workingHours){
+    this.workingHours = workingHours;
   }
 
 
@@ -76,7 +76,7 @@ public class EmergencyContactRefDTO implements Serializable {
     ", name= '" + getName() + "'" +
     ", type= '" + getType() + "'" +
     ", contact= '" + getContact() + "'" +
-    ", working_hours= '" + getWorking_Hours() + "'" +
+    ", workingHours= '" + getWorkingHours() + "'" +
     "}";
   }
 }

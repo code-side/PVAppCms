@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A TouristDestination.
@@ -26,7 +28,7 @@ public class TouristDestination implements Serializable {
     private String description;
 
     @Field("photos")
-    private String photos;
+    private List<String> photos = new ArrayList<>();
 
     @Field("address")
     private String address;
@@ -87,16 +89,16 @@ public class TouristDestination implements Serializable {
         this.description = description;
     }
 
-    public String getPhotos() {
+    public List<String> getPhotos() {
         return photos;
     }
 
-    public TouristDestination photos(String photos) {
+    public TouristDestination photos(List<String> photos) {
         this.photos = photos;
         return this;
     }
 
-    public void setPhotos(String photos) {
+    public void setPhotos(List<String> photos) {
         this.photos = photos;
     }
 
@@ -179,7 +181,7 @@ public class TouristDestination implements Serializable {
             ", name='" + getName() + "'" +
             ", coordinates='" + getCoordinates() + "'" +
             ", description='" + getDescription() + "'" +
-            ", photos='" + getPhotos() + "'" +
+            ", photos='" + getPhotos().size() + "'" +
             ", address='" + getAddress() + "'" +
             ", province='" + getProvince().toString() + "'" +
             ", reviews='" + getReviews() + "'" +

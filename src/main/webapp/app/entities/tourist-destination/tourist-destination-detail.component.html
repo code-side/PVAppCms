@@ -16,9 +16,9 @@
         <dd>
             <span>{{touristDestination.description}}</span>
         </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Photos</span></dt>
+        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Main photo</span></dt>
         <dd>
-            <span>{{touristDestination.photos}}</span>
+            <img height="200" width="200" [src]="touristDestination.photos[0]">
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.touristDestination.address">Address</span></dt>
         <dd>
@@ -26,11 +26,14 @@
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.touristDestination.province">Province</span></dt>
         <dd>
-            <span>{{touristDestination.province}}</span>
+            <span>{{touristDestination.province.name}}</span>
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.touristDestination.attributes">Attributes</span></dt>
         <dd>
-            <span>{{touristDestination.attributes}}</span>
+            <div *ngFor="let att of touristDestination.attributes" class="col-md-12">
+                <span><b>Pregunta:</b> {{att.name}} <b>Value:</b> {{att.value}}</span>
+            </div>
+
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.touristDestination.reviews">Reviews</span></dt>
         <dd>

@@ -22,7 +22,8 @@
         </dd>
         <dt><span jhiTranslate="pvAppCmsApp.province.photo">Photo</span></dt>
         <dd>
-            <span>{{province.photo}}</span>
+          <span class="row">{{province.photo}}</span>
+          <span class="row"><img src="{{province.photo !== null ? province.photo:NO_IMAGE}}" alt="{{province.name}}" width="150" height="150"/></span>
         </dd>
     
     </dl>

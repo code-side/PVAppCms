@@ -24,7 +24,7 @@ export class ProvinceDialogComponent implements OnInit {
     isEditEC: boolean;
     emergencyContact:EmergencyContactRef;
     indexToEdit: number;
-
+    typesOfEC: any[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
@@ -35,18 +35,27 @@ export class ProvinceDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.typesOfEC = this.initArrayOfECTypes();
         this.emergencyContact = new EmergencyContactRef();
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         if(this.province.id === undefined)
             this.province.emergencyContacts = []
+
+        if (this.province !== null && this.province.cantons !== undefined) {
+            this.cantons = this.province.cantons.join();
+        }
+
     }
 
     clear() {
-        this.cantons = "";
+        this.cantons = '';
         this.activeModal.dismiss('cancel');
     }
 
     save() {
+
+        this.isSaving = true;
+        this.province.cantons = this.cantons.split(',');
 
         if (this.province.id !== undefined) {
             this.subscribeToSaveResponse(
@@ -93,7 +102,7 @@ export class ProvinceDialogComponent implements OnInit {
             this.province.emergencyContacts[this.indexToEdit].name = this.emergencyContact.name;
             this.province.emergencyContacts[this.indexToEdit].type = this.emergencyContact.type;
             this.province.emergencyContacts[this.indexToEdit].contact = this.emergencyContact.contact;
-            this.province.emergencyContacts[this.indexToEdit].working_hours = this.emergencyContact.working_hours;
+            this.province.emergencyContacts[this.indexToEdit].workingHours = this.emergencyContact.workingHours;
         }
         this.emergencyContact = new EmergencyContactRef();
         this.isEditEC = false;
@@ -103,7 +112,7 @@ export class ProvinceDialogComponent implements OnInit {
         this.emergencyContact.name = ec.name;
         this.emergencyContact.type = ec.type;
         this.emergencyContact.contact = ec.contact;
-        this.emergencyContact.working_hours = ec.working_hours;
+        this.emergencyContact.workingHours = ec.workingHours;
         this.isEditEC = true;
         this.indexToEdit = i;
     }
@@ -114,6 +123,14 @@ export class ProvinceDialogComponent implements OnInit {
             this.isEditEC = false;
         }
 
+    }
+    cancelEdit(){
+          this.emergencyContact = new EmergencyContactRef();
+          this.isEditEC = !this.isEditEC;
+      }
+
+    initArrayOfECTypes(){
+         return [{type:'Policía'}, {type:'Ambulancia'},{type:'Hospital'},{type:'Bomberos'}]
     }
 }
 

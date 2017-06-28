@@ -28,9 +28,9 @@
                 [(ngModel)]="touristDestination.description"  />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.photos" for="field_photos">Photos</label>
-            <input type="text" class="form-control" name="photos" id="field_photos"
-                [(ngModel)]="touristDestination.photos"  />
+            <label class="form-control-label" for="field_photo">Main photo</label>
+            <input type="text" class="form-control" required name="photo" id="field_photo"
+                [(ngModel)]="photo"  (ngModelChange)="savePhoto()"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.address" for="field_address">Address</label>

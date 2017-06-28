@@ -6,7 +6,7 @@ export class EmergencyContactRef implements BaseEntity{
     public name?: string,
     public type?: string,
     public contact?: string,
-    public working_hours?: string
+    public workingHours?: string
   ){
 
   }

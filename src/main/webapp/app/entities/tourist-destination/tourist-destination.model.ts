@@ -8,7 +8,7 @@ export class TouristDestination implements BaseEntity {
         public name?: string,
         public coordinates?: string,
         public description?: string,
-        public photos?: string,
+        public photos?: string[],
         public address?: string,
         public province?: ProvinceRef,
         public attributes?: AttributeRef[],
