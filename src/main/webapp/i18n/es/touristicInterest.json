@@ -15,13 +15,14 @@
             "detail": {
                 "title": "Touristic Interest"
             },
-            "name": "Name",
-            "type": "Type",
-            "workingHours": "Working Hours",
-            "contact": "Contact",
-            "address": "Address",
-            "province": "Province",
-            "reviews": "Reviews"
+            "name": "Nombre",
+            "type": "Tipo",
+            "workingHours": "Horario de atención",
+            "contact": "Contacto",
+            "address": "Dirreción",
+            "province": "Provincia",
+            "reviews": "Reviews",
+            "coordinates": "Coordenadas"
         }
     }
 }
