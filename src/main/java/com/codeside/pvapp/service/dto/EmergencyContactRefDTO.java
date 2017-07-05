@@ -17,6 +17,7 @@ public class EmergencyContactRefDTO implements Serializable {
 
   private String workingHours;
 
+  private String coordinates;
 
   public String getName(){
     return name;
@@ -65,10 +66,23 @@ public class EmergencyContactRefDTO implements Serializable {
     this.workingHours = workingHours;
     return this;
   }
+
   public void setWorkingHours(String workingHours){
     this.workingHours = workingHours;
   }
 
+  public String getCoordinates(){
+    return coordinates;
+  }
+
+  public EmergencyContactRefDTO coordinates (String coordinates){
+    this.coordinates = coordinates;
+    return this;
+  }
+
+  public void setCoordinates(String coordinates){
+    this.coordinates = coordinates;
+  }
 
   @Override
   public String toString(){
@@ -77,6 +91,7 @@ public class EmergencyContactRefDTO implements Serializable {
     ", type= '" + getType() + "'" +
     ", contact= '" + getContact() + "'" +
     ", workingHours= '" + getWorkingHours() + "'" +
+    ", coordinates= '" + getCoordinates() + "'" +
     "}";
   }
 }

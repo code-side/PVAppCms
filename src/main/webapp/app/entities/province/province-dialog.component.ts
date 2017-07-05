@@ -103,6 +103,7 @@ export class ProvinceDialogComponent implements OnInit {
           this.province.emergencyContacts[this.indexToEdit].type = this.emergencyContact.type;
           this.province.emergencyContacts[this.indexToEdit].contact = this.emergencyContact.contact;
           this.province.emergencyContacts[this.indexToEdit].workingHours = this.emergencyContact.workingHours;
+          this.province.emergencyContacts[this.indexToEdit].coordinates = this.emergencyContact.coordinates;
         }
         this.emergencyContact = new EmergencyContactRef();
         this.isEditEC = false;
@@ -113,6 +114,7 @@ export class ProvinceDialogComponent implements OnInit {
         this.emergencyContact.type = ec.type;
         this.emergencyContact.contact = ec.contact;
         this.emergencyContact.workingHours = ec.workingHours;
+        this.emergencyContact.coordinates = ec.coordinates;
         this.isEditEC = true;
         this.indexToEdit = i;
     }
@@ -131,7 +133,7 @@ export class ProvinceDialogComponent implements OnInit {
     }
 
     initArrayOfECTypes() {
-      return [{type: 'Policía'}, {type: 'Ambulancia'}, {type: 'Hospital'}, {type: 'Bomberos'}];
+      return [{type: 'police'}, {type: 'ambulance'}, {type: 'hospital'}, {type: 'firefighters'}, {type: 'crane'}, {type: 'help'}];
     }
 }
 
