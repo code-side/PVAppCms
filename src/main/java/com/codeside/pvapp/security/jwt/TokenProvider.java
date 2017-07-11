@@ -68,6 +68,23 @@ public class TokenProvider {
             .compact();
     }
 
+    public String createMobileToken(Authentication authentication) {
+        String authorities = authentication.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority)
+            .collect(Collectors.joining(","));
+
+        long now = (new Date()).getTime();
+        Date validity;
+        validity = new Date(now + this.tokenValidityInMillisecondsForRememberMe);
+
+        return Jwts.builder()
+            .setSubject(authentication.getName())
+            .claim(AUTHORITIES_KEY, authorities)
+            .signWith(SignatureAlgorithm.HS512, secretKey)
+            .setExpiration(validity)
+            .compact();
+    }
+
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts.parser()
             .setSigningKey(secretKey)

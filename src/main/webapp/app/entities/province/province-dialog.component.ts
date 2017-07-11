@@ -54,7 +54,9 @@ export class ProvinceDialogComponent implements OnInit {
     save() {
 
         this.isSaving = true;
-        this.province.cantons = this.cantons.split(',');
+        if(this.province.cantons!==undefined){
+            this.province.cantons = this.cantons.split(',');
+        }
 
         if (this.province.id !== undefined) {
             this.subscribeToSaveResponse(
