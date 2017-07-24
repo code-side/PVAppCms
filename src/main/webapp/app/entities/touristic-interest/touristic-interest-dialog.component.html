@@ -44,6 +44,11 @@
                 [(ngModel)]="touristicInterest.address"  />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristicInterest.coordinates" for="field_coordinates">Coordinates</label>
+            <input required minlength="4" type="text" class="form-control" name="coordinates" id="field_coordinates"
+                [(ngModel)]="touristicInterest.coordinates"  />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.province" for="field_province">Province</label>
             <select required [(ngModel)]="selectedProvince" (change)="saveProvinceRef('province')" class="form-control" name="province" id="field_province">
                 <option *ngFor="let p of provinces" [ngValue]="p">{{p.name}}</option>

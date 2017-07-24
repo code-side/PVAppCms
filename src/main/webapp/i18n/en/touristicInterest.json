@@ -21,7 +21,8 @@
             "contact": "Contact",
             "address": "Address",
             "province": "Province",
-            "reviews": "Reviews"
+            "reviews": "Reviews",
+            "coordinates": "Coordinates"
         }
     }
 }

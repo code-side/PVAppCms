@@ -26,13 +26,18 @@ public class EmergencyContactRef implements Serializable {
   @Field("working_hours")
   private String workingHours;
 
+  @Field("coordinates")
+  private String coordinates;
+
   public String getName(){
     return name;
   }
+
   public EmergencyContactRef name(String name){
     this.name = name;
     return this;
   }
+
   public void setName(String name){
     this.name = name;
   }
@@ -40,6 +45,7 @@ public class EmergencyContactRef implements Serializable {
   public String getType(){
     return type;
   }
+
   public EmergencyContactRef type(String type){
     this.type = type;
     return this;
@@ -57,20 +63,36 @@ public class EmergencyContactRef implements Serializable {
     this.contact = contact;
     return this;
   }
+
   public void setContact(String contact){
     this.contact = contact;
   }
+
   public String getWorkingHours(){
     return workingHours;
   }
+
   public EmergencyContactRef workingHours(String workingHours){
     this.workingHours = workingHours;
     return this;
   }
+
   public void setWorkingHours(String workingHours){
     this.workingHours = workingHours;
   }
 
+  public String getCoordinates(){
+    return coordinates;
+  }
+
+  public EmergencyContactRef coordinates (String coordinates){
+    this.coordinates = coordinates;
+    return this;
+  }
+
+  public void setCoordinates(String coordinates){
+    this.coordinates = coordinates;
+  }
 
   @Override
   public String toString(){
@@ -79,6 +101,7 @@ public class EmergencyContactRef implements Serializable {
     ", type= '" + getType() + "'" +
     ", contact= '" + getContact() + "'" +
     ", workingHours= '" + getWorkingHours() + "'" +
+    ", coordinates= '" + getCoordinates() + "'" +
     "}";
   }
 

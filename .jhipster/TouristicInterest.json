@@ -29,6 +29,10 @@
         {
             "fieldName": "reviews",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "coordinates",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170624071230",
