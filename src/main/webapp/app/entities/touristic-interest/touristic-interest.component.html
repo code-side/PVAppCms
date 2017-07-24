@@ -15,64 +15,52 @@
     <div class="table-responsive" *ngIf="touristicInterests">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.touristicInterest.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="type"><span jhiTranslate="pvAppCmsApp.touristicInterest.type">Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="photo"><span>Photo</span><span class="fa fa-sort"></span></th>
-            <th jhiSortBy="workingHours"><span jhiTranslate="pvAppCmsApp.touristicInterest.workingHours">Working Hours</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="contact"><span jhiTranslate="pvAppCmsApp.touristicInterest.contact">Contact</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.touristicInterest.address">Address</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.touristicInterest.province">Province</span> <span class="fa fa-sort"></span></th>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                    <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.touristicInterest.name">Name</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="type"><span jhiTranslate="pvAppCmsApp.touristicInterest.type">Type</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="workingHours"><span jhiTranslate="pvAppCmsApp.touristicInterest.workingHours">Working Hours</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="contact"><span jhiTranslate="pvAppCmsApp.touristicInterest.contact">Contact</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.touristicInterest.address">Address</span> <span class="fa fa-sort"></span></th>
+                    <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.touristicInterest.province">Province</span> <span class="fa fa-sort"></span></th>
 
-            <th></th>
-            </tr>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let touristicInterest of touristicInterests ;trackBy: trackId">
-                <td><a [routerLink]="['../touristic-interest', touristicInterest.id ]">{{touristicInterest.id}}</a></td>
-                <td>{{touristicInterest.name}}</td>
-                <td>{{touristicInterest.type}}</td>
-                <td><img height="75" width="75" [src]="touristicInterest.photo"></td>
-                <td>{{touristicInterest.workingHours}}</td>
-                <td>{{touristicInterest.contact}}</td>
-                <td>{{touristicInterest.address}}</td>
-                <td>{{touristicInterest.province.name}}</td>
+                <tr *ngFor="let touristicInterest of touristicInterests ;trackBy: trackId">
+                    <td>{{touristicInterest.name}}</td>
+                    <td>{{touristicInterest.type}}</td>
+                    <td>{{touristicInterest.workingHours}}</td>
+                    <td>{{touristicInterest.contact}}</td>
+                    <td>{{touristicInterest.address}}</td>
+                    <td>{{touristicInterest.province.name}}</td>
 
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../touristic-interest', touristicInterest.id ]"
-                                class="btn btn-info btn-sm">
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['../touristic-interest', touristicInterest.id ]" class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'touristic-interest/'+ touristicInterest.id + '/edit'} }]"
-                                replaceUrl="true"
-                                class="btn btn-primary btn-sm">
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'touristic-interest/'+ touristicInterest.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'touristic-interest/'+ touristicInterest.id + '/delete'} }]"
-                                replaceUrl="true"
-                                class="btn btn-danger btn-sm">
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'touristic-interest/'+ touristicInterest.id + '/delete'} }]" replaceUrl="true" class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
-                    </div>
-                </td>
-            </tr>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
-        <div *ngIf="touristicInterests && touristicInterests.length">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
-            </div>
+    <div *ngIf="touristicInterests && touristicInterests.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
 </div>
