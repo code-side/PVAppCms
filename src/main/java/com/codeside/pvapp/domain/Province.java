@@ -33,6 +33,9 @@ public class Province implements Serializable {
     @Field("photo")
     private String photo;
 
+    @Field("idiom")
+    private String idiom;
+
     @Field("cantons")
     private List<String> cantons = new ArrayList<>();
 
@@ -112,6 +115,19 @@ public class Province implements Serializable {
         this.photo = photo;
     }
 
+    public String getIdiom() {
+        return idiom;
+    }
+
+    public Province idiom(String idiom) {
+        this.idiom = idiom;
+        return this;
+    }
+
+    public void setIdiom(String idiom) {
+        this.idiom = idiom;
+    }
+
     public List<String> getCantons() {
         return cantons;
     }
@@ -167,7 +183,8 @@ public class Province implements Serializable {
             ", history='" + getHistory() + "'" +
             ", culture='" + getCulture() + "'" +
             ", photo='" + getPhoto() + "'" +
-            ", cantons='" + getCantons().size() + "'" +        
+            ", idiom='" + getIdiom() + "'" +
+            ", cantons='" + getCantons().size() + "'" +
             "}";
     }
 }

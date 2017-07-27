@@ -40,6 +40,9 @@ public class TouristicInterest implements Serializable {
     @Field("photo")
     private String photo;
 
+    @Field("coordinates")
+    private String coordinates;
+
     public String getId() {
         return id;
     }
@@ -152,7 +155,18 @@ public class TouristicInterest implements Serializable {
         this.photo = photo;
     }
 
+    public String getCoordinates() {
+        return coordinates;
+    }
 
+    public TouristicInterest coordinates(String coordinates) {
+        this.coordinates = coordinates;
+        return this;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -185,6 +199,7 @@ public class TouristicInterest implements Serializable {
             ", address='" + getAddress() + "'" +
             ", reviews='" + getReviews() + "'" +
             ", photoURL='" + getPhoto()  + "'" +
+            ", coordinates='" + getCoordinates()  + "'" +
             "}";
     }
 }

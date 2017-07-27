@@ -22,6 +22,8 @@ public class ProvinceDTO implements Serializable {
 
     private String photo;
 
+    private String idiom;
+
     private List<String> cantons = new ArrayList<>();
 
     private EmergencyContactRefDTO[] emergencyContacts;
@@ -74,6 +76,19 @@ public class ProvinceDTO implements Serializable {
         this.photo = photo;
     }
 
+    public String getIdiom() {
+        return idiom;
+    }
+
+    public ProvinceDTO idiom(String idiom) {
+        this.idiom = idiom;
+        return this;
+    }
+
+    public void setIdiom(String idiom) {
+        this.idiom = idiom;
+    }
+
     public List<String> getCantons() {
         return cantons;
     }
@@ -120,6 +135,7 @@ public class ProvinceDTO implements Serializable {
             ", history='" + getHistory() + "'" +
             ", culture='" + getCulture() + "'" +
             ", photo='" + getPhoto() + "'" +
+            ", idiom='" + getIdiom() + "'" +
             ", cantons='" + getCantons().size() + "'" +
             "}";
     }

@@ -101,10 +101,12 @@ export class ProvinceDialogComponent implements OnInit {
         if (!this.isEditEC) {
             this.province.emergencyContacts.push(this.emergencyContact);
         } else {
-            this.province.emergencyContacts[this.indexToEdit].name = this.emergencyContact.name;
-            this.province.emergencyContacts[this.indexToEdit].type = this.emergencyContact.type;
-            this.province.emergencyContacts[this.indexToEdit].contact = this.emergencyContact.contact;
-            this.province.emergencyContacts[this.indexToEdit].workingHours = this.emergencyContact.workingHours;
+
+          this.province.emergencyContacts[this.indexToEdit].name = this.emergencyContact.name;
+          this.province.emergencyContacts[this.indexToEdit].type = this.emergencyContact.type;
+          this.province.emergencyContacts[this.indexToEdit].contact = this.emergencyContact.contact;
+          this.province.emergencyContacts[this.indexToEdit].workingHours = this.emergencyContact.workingHours;
+          this.province.emergencyContacts[this.indexToEdit].coordinates = this.emergencyContact.coordinates;
         }
         this.emergencyContact = new EmergencyContactRef();
         this.isEditEC = false;
@@ -115,6 +117,7 @@ export class ProvinceDialogComponent implements OnInit {
         this.emergencyContact.type = ec.type;
         this.emergencyContact.contact = ec.contact;
         this.emergencyContact.workingHours = ec.workingHours;
+        this.emergencyContact.coordinates = ec.coordinates;
         this.isEditEC = true;
         this.indexToEdit = i;
     }
