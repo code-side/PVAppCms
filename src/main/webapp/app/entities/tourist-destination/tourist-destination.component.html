@@ -16,11 +16,9 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.touristDestination.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="coordinates"><span jhiTranslate="pvAppCmsApp.touristDestination.coordinates">Coordinates</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="pvAppCmsApp.touristDestination.description">Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="photos"><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Photos</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.touristDestination.address">Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.touristDestination.province">Province</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -28,11 +26,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let touristDestination of touristDestinations ;trackBy: trackId">
-                <td><a [routerLink]="['../tourist-destination', touristDestination.id ]">{{touristDestination.id}}</a></td>
                 <td>{{touristDestination.name}}</td>
                 <td>{{touristDestination.coordinates}}</td>
                 <td>{{touristDestination.description}}</td>
-                <td><img height="75" width="75" [src]="touristDestination.photos[0]"></td>
                 <td>{{touristDestination.address}}</td>
                 <td>{{touristDestination.province.name}}</td>
                 <td class="text-right">

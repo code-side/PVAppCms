@@ -16,11 +16,9 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.ticoStop.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="historicalReview"><span jhiTranslate="pvAppCmsApp.ticoStop.historicalReview">Historical Review</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="coordinates"><span jhiTranslate="pvAppCmsApp.ticoStop.coordinates">Coordinates</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="photo"><span jhiTranslate="pvAppCmsApp.ticoStop.photo">Photo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.ticoStop.address">Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.ticoStop.province">Province</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -28,11 +26,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let ticoStop of ticoStops ;trackBy: trackId">
-                <td><a [routerLink]="['../tico-stop', ticoStop.id ]">{{ticoStop.id}}</a></td>
                 <td>{{ticoStop.name}}</td>
-                <td>{{ticoStop.historicalReview}}</td>
+                <td>{{ticoStop.historicalReview | slice:0:100}}...</td>
                 <td>{{ticoStop.coordinates}}</td>
-                <td><img src="{{ticoStop.photo!==null ? ticoStop.photo:NO_IMAGE}}" alt="{{ticoStop.name}}" width="75" height="75"/></td>
                 <td>{{ticoStop.address}}</td>
                 <td>{{ticoStop.province.name}}, {{ticoStop.province.canton}}</td>
                 <td class="text-right">

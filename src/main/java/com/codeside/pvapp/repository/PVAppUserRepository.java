@@ -11,5 +11,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 @SuppressWarnings("unused")
 @Repository
 public interface PVAppUserRepository extends MongoRepository<PVAppUser,String> {
-    
+
+    PVAppUser findOneByEmailAndPassword(String email, String password);
 }
