@@ -19,7 +19,7 @@ public class TouristDestinationDTO implements Serializable {
 
     private String description;
 
-    private List<String> photos = new ArrayList<>();
+    private List<PhotoDTO> photos = new ArrayList<>();
 
     private String address;
 
@@ -61,11 +61,11 @@ public class TouristDestinationDTO implements Serializable {
         this.description = description;
     }
 
-    public List<String> getPhotos() {
+    public List<PhotoDTO> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<String> photos) {
+    public void setPhotos(List<PhotoDTO> photos) {
         this.photos = photos;
     }
 

@@ -117,7 +117,7 @@ public class PVAppUserDTO implements Serializable {
 
     private String gender;
 
-    private String photo;
+    private PhotoDTO photo;
 
     private Integer status;
 
@@ -189,11 +189,11 @@ public class PVAppUserDTO implements Serializable {
         this.gender = gender;
     }
 
-    public String getPhoto() {
+    public PhotoDTO getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(PhotoDTO photo) {
         this.photo = photo;
     }
 

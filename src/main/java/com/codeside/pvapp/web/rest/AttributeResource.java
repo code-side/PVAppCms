@@ -36,13 +36,13 @@ public class AttributeResource {
 
     private static final String ENTITY_NAME = "attributes";
 
-    private final AttributeRepository AttributeRepository;
+    private final AttributeRepository attributeRepository;
 
-    private final AttributeMapper AttributeMapper;
+    private final AttributeMapper attributeMapper;
 
-    public AttributeResource(AttributeRepository AttributeRepository, AttributeMapper AttributeMapper) {
-        this.AttributeRepository = AttributeRepository;
-        this.AttributeMapper = AttributeMapper;
+    public AttributeResource(AttributeRepository AttributeRepository, AttributeMapper attributeMapper) {
+        this.attributeRepository = AttributeRepository;
+        this.attributeMapper = attributeMapper;
     }
 
     /**
@@ -59,9 +59,9 @@ public class AttributeResource {
         if (AttributeRefDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new AttributeRef cannot already have an ID")).body(null);
         }
-        AttributeRef AttributeRef = AttributeMapper.toEntity(AttributeRefDTO);
-        AttributeRef = AttributeRepository.save(AttributeRef);
-        AttributeRefDTO result = AttributeMapper.toDto(AttributeRef);
+        AttributeRef AttributeRef = attributeMapper.toEntity(AttributeRefDTO);
+        AttributeRef = attributeRepository.save(AttributeRef);
+        AttributeRefDTO result = attributeMapper.toDto(AttributeRef);
         return ResponseEntity.created(new URI("/api/Attributes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -83,9 +83,9 @@ public class AttributeResource {
         if (AttributeRefDTO.getId() == null) {
             return createAttributeRef(AttributeRefDTO);
         }
-        AttributeRef AttributeRef = AttributeMapper.toEntity(AttributeRefDTO);
-        AttributeRef = AttributeRepository.save(AttributeRef);
-        AttributeRefDTO result = AttributeMapper.toDto(AttributeRef);
+        AttributeRef AttributeRef = attributeMapper.toEntity(AttributeRefDTO);
+        AttributeRef = attributeRepository.save(AttributeRef);
+        AttributeRefDTO result = attributeMapper.toDto(AttributeRef);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, AttributeRefDTO.getId().toString()))
             .body(result);
@@ -101,9 +101,9 @@ public class AttributeResource {
     @Timed
     public ResponseEntity<List<AttributeRefDTO>> getAllAttributeRefs(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of AttributeRefs");
-        Page<AttributeRef> page = AttributeRepository.findAll(pageable);
+        Page<AttributeRef> page = attributeRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/Attributes");
-        return new ResponseEntity<>(AttributeMapper.toDto(page.getContent()), headers, HttpStatus.OK);
+        return new ResponseEntity<>(attributeMapper.toDto(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**
@@ -116,8 +116,8 @@ public class AttributeResource {
     @Timed
     public ResponseEntity<AttributeRefDTO> getAttributeRef(@PathVariable String id) {
         log.debug("REST request to get AttributeRef : {}", id);
-        AttributeRef AttributeRef = AttributeRepository.findOne(id);
-        AttributeRefDTO AttributeRefDTO = AttributeMapper.toDto(AttributeRef);
+        AttributeRef AttributeRef = attributeRepository.findOne(id);
+        AttributeRefDTO AttributeRefDTO = attributeMapper.toDto(AttributeRef);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(AttributeRefDTO));
     }
 
@@ -131,7 +131,7 @@ public class AttributeResource {
     @Timed
     public ResponseEntity<Void> deleteAttributeRef(@PathVariable String id) {
         log.debug("REST request to delete AttributeRef : {}", id);
-        AttributeRepository.delete(id);
+        attributeRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id)).build();
     }
 }

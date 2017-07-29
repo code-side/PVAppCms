@@ -133,7 +133,7 @@ public class PVAppUser implements Serializable {
     private String gender;
 
     @Field("photo")
-    private String photo;
+    private Photo photo;
 
     @Field("status")
     private Integer status;
@@ -243,16 +243,16 @@ public class PVAppUser implements Serializable {
         this.gender = gender;
     }
 
-    public String getPhoto() {
+    public Photo getPhoto() {
         return photo;
     }
 
-    public PVAppUser photo(String photo) {
+    public PVAppUser photo(Photo photo) {
         this.photo = photo;
         return this;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Photo photo) {
         this.photo = photo;
     }
 

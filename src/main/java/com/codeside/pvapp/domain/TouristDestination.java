@@ -28,7 +28,7 @@ public class TouristDestination implements Serializable {
     private String description;
 
     @Field("photos")
-    private List<String> photos = new ArrayList<>();
+    private List<Photo> photos = new ArrayList<>();
 
     @Field("address")
     private String address;
@@ -89,16 +89,16 @@ public class TouristDestination implements Serializable {
         this.description = description;
     }
 
-    public List<String> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public TouristDestination photos(List<String> photos) {
+    public TouristDestination photos(List<Photo> photos) {
         this.photos = photos;
         return this;
     }
 
-    public void setPhotos(List<String> photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 
