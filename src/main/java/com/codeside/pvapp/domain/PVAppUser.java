@@ -139,7 +139,7 @@ public class PVAppUser implements Serializable {
     private Integer status;
 
     @Field("favorite_list")
-    private List<TouristDestination> favoriteList = new ArrayList<>();
+    private List<TouristDestinationRef> favoriteList = new ArrayList<>();
 
     @Field("achievements")
     private List<Achievement> achievements = new ArrayList<>();
@@ -269,16 +269,16 @@ public class PVAppUser implements Serializable {
         this.status = status;
     }
 
-    public List<TouristDestination> getFavoriteList() {
+    public List<TouristDestinationRef> getFavoriteList() {
         return favoriteList;
     }
 
-    public PVAppUser favoriteList(List<TouristDestination> favoriteList) {
+    public PVAppUser favoriteList(List<TouristDestinationRef> favoriteList) {
         this.favoriteList = favoriteList;
         return this;
     }
 
-    public void setFavoriteList(List<TouristDestination> favoriteList) {
+    public void setFavoriteList(List<TouristDestinationRef> favoriteList) {
         this.favoriteList = favoriteList;
     }
 
