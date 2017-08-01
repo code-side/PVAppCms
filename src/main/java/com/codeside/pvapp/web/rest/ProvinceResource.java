@@ -5,16 +5,11 @@ import com.codeside.pvapp.domain.Province;
 
 import com.codeside.pvapp.repository.ProvinceRepository;
 import com.codeside.pvapp.web.rest.util.HeaderUtil;
-import com.codeside.pvapp.web.rest.util.PaginationUtil;
 import com.codeside.pvapp.service.dto.ProvinceDTO;
 import com.codeside.pvapp.service.mapper.ProvinceMapper;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -94,16 +89,15 @@ public class ProvinceResource {
     /**
      * GET  /provinces : get all the provinces.
      *
-     * @param pageable the pagination information
+     * @param lang the idiom version of the information
      * @return the ResponseEntity with status 200 (OK) and the list of provinces in body
      */
     @GetMapping("/provinces")
     @Timed
-    public ResponseEntity<List<ProvinceDTO>> getAllProvinces(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<ProvinceDTO>> getAllProvinces(@RequestParam(required=false, defaultValue="en") String lang) {
         log.debug("REST request to get a page of Provinces");
-        Page<Province> page = provinceRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/provinces");
-        return new ResponseEntity<>(provinceMapper.toDto(page.getContent()), headers, HttpStatus.OK);
+        List<Province> results = provinceRepository.findAllByIdiom(lang);
+        return new ResponseEntity<>(provinceMapper.toDto(results), HttpStatus.OK);
     }
 
     /**

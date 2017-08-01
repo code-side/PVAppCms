@@ -8,10 +8,9 @@ import java.util.Objects;
  */
 public class ProvinceRefDTO implements Serializable {
 
-    private String id;
-
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
     private String canton;
 
     public String getId() {

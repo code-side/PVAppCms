@@ -1,6 +1,5 @@
 package com.codeside.pvapp.service.dto;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.List;
@@ -11,24 +10,23 @@ import java.util.ArrayList;
  */
 public class TouristDestinationDTO implements Serializable {
 
-    private String id;
-
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
     private String coordinates;
-
     private String description;
-
-    private List<PhotoDTO> photos = new ArrayList<>();
-
+    private List<PhotoDTO> photos;
     private String address;
-
     private ProvinceRefDTO province;
+    private List<AttributeDTO> attributes;
+    private List<ReviewDTO> reviews;
 
-    private AttributeRefDTO[] attributes;
-
-    private String reviews;
-
+    public TouristDestinationDTO() {
+    	photos = new ArrayList<>();
+    	attributes = new ArrayList<>();
+    	reviews = new ArrayList<>();
+    }
+    
     public String getId() {
         return id;
     }
@@ -85,19 +83,19 @@ public class TouristDestinationDTO implements Serializable {
         this.province = province;
     }
 
-    public AttributeRefDTO[] getAttributes() {
+    public List<AttributeDTO> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(AttributeRefDTO[] attributes) {
+    public void setAttributes(List<AttributeDTO> attributes) {
         this.attributes = attributes;
     }
 
-    public String getReviews() {
+    public List<ReviewDTO> getReviews() {
         return reviews;
     }
 
-    public void setReviews(String reviews) {
+    public void setReviews(List<ReviewDTO> reviews) {
         this.reviews = reviews;
     }
 
@@ -132,7 +130,8 @@ public class TouristDestinationDTO implements Serializable {
             ", photos='" + getPhotos().size() + "'" +
             ", address='" + getAddress() + "'" +
             ", province='" + getProvince().toString() + "'" +
-            ", reviews='" + getReviews() + "'" +
+            ", attributes='" + getAttributes().size() + "'" +
+            ", reviews='" + getReviews().size() + "'" +
             "}";
     }
 }
