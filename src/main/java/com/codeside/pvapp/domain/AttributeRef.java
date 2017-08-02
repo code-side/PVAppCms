@@ -7,12 +7,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Generic Province Reference.
+ * Generic Attribute Reference.
  */
 @Document(collection = "attribute_ref")
 public class AttributeRef implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    private String id;
 
     @Field("name")
     private String name;
@@ -20,6 +22,19 @@ public class AttributeRef implements Serializable {
     @Field("value")
     private String value;
 
+    @Field("type")
+    private String type;
+
+    @Field("idiom")
+    private String idiom;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -47,11 +62,40 @@ public class AttributeRef implements Serializable {
         this.value = value;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public AttributeRef type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getIdiom() {
+        return idiom;
+    }
+
+    public AttributeRef idiom(String idiom) {
+        this.idiom = idiom;
+        return this;
+    }
+
+    public void setIdiom(String idiom) {
+        this.idiom = idiom;
+    }
+
     @Override
     public String toString() {
         return "AttributeRef{" +
+            "id=" + getId() +
             ", name='" + getName() + "'" +
             ", value='" + getValue() + "'" +
+            ", type='" + getType() + "'" +
+            ", idiom='" + getIdiom() + "'" +
             "}";
     }
 }

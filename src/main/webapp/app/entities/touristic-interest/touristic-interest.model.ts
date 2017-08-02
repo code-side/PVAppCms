@@ -1,5 +1,5 @@
 import { BaseEntity } from './../../shared';
-import { ProvinceRef } from '../province/province-ref.model'
+import { ProvinceRef } from '../province/province-ref.model';
 
 export class TouristicInterest implements BaseEntity {
     constructor(
@@ -12,6 +12,7 @@ export class TouristicInterest implements BaseEntity {
         public province?: ProvinceRef,
         public reviews?: string,
         public photo?: string,
+        public coordinates?: string
     ) {
     }
 }

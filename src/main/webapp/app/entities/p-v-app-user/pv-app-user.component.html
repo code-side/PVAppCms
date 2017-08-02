@@ -16,29 +16,25 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.pVAppUser.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="email"><span jhiTranslate="pvAppCmsApp.pVAppUser.email">Email</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="registrationDate"><span jhiTranslate="pvAppCmsApp.pVAppUser.registrationDate">Registration Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="birthday"><span jhiTranslate="pvAppCmsApp.pVAppUser.birthday">Birthday</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nationality"><span jhiTranslate="pvAppCmsApp.pVAppUser.nationality">Nationality</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="gender"><span jhiTranslate="pvAppCmsApp.pVAppUser.gender">Gender</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="photo"><span jhiTranslate="pvAppCmsApp.pVAppUser.photo">Photo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="pvAppCmsApp.pVAppUser.status">Status</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let pVAppUser of pVAppUsers ;trackBy: trackId">
-                <td><a [routerLink]="['../pv-app-user', pVAppUser.id ]">{{pVAppUser.id}}</a></td>
                 <td>{{pVAppUser.name}}</td>
                 <td>{{pVAppUser.email}}</td>
                 <td>{{pVAppUser.registrationDate | date:'mediumDate'}}</td>
                 <td>{{pVAppUser.birthday | date:'mediumDate'}}</td>
                 <td>{{pVAppUser.nationality}}</td>
                 <td>{{pVAppUser.gender}}</td>
-                <td align="center"><img src={{pVAppUser.photo}} height="20" width="20"/></td>
-                <td>{{pVAppUser.status}}</td>
+                <td>{{(pVAppUser.status === 1)? 'Active' : 'Inactive'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

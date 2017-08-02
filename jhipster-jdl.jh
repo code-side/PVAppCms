@@ -62,5 +62,14 @@ entity TouristicInterest
     reviews String
 }
 
+entity AttributeRef
+{
+    id String,
+    name String,
+    value String,
+    type String,
+    idiom String
+}
+
 dto * with mapstruct
 paginate * with pagination

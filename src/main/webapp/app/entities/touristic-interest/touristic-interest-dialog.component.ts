@@ -39,7 +39,7 @@ export class TouristicInterestDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.typeOfTouristInterest= this.initArrayOfTypes();
+        this.typeOfTouristInterest = this.initArrayOfTypes();
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.provinceService.query().subscribe(
@@ -50,12 +50,11 @@ export class TouristicInterestDialogComponent implements OnInit {
 
     private onSuccess(data, headers) {
         this.provinces = data;
-        if(this.touristicInterest.id === undefined){
+        if (this.touristicInterest.id === undefined) {
             this.touristicInterest.province = new ProvinceRef();
-            }
-        else
-            this.findProvince();
-
+        } else {
+          this.findProvince();
+        }
     }
 
     clear() {
@@ -102,21 +101,22 @@ export class TouristicInterestDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
-    saveProvinceRef(action:any){
-        if(action === 'province'){
+
+    saveProvinceRef(action: any) {
+        if (action === 'province') {
             this.touristicInterest.province.name = this.selectedProvince.name;
             this.touristicInterest.province.id = this.selectedProvince.id;
-            console.log('change')
-        }else{
+        } else {
             this.touristicInterest.province.canton =  this.selectedCanton;
         }
     }
-    findProvince(){
-        for(let province of this.provinces){
-            if(province.id === this.touristicInterest.province.id){
+
+    findProvince() {
+        for (const province of this.provinces) {
+            if (province.id === this.touristicInterest.province.id) {
                 this.selectedProvince = province;
-                for(let canton of province.cantons){
-                    if(canton === this.touristicInterest.province.canton){
+                for (const canton of province.cantons) {
+                    if (canton === this.touristicInterest.province.canton) {
                          this.selectedCanton = canton;
                          break;
                      }
@@ -125,9 +125,10 @@ export class TouristicInterestDialogComponent implements OnInit {
             }
         }
     }
-  initArrayOfTypes(){
-    return [{type:'Agencia de viajes'}, {type:'Rent a car'},{type:'Tours'},{type:'Hospedaje'}, {type:'Restaurante'}]
-  }
+
+    initArrayOfTypes() {
+      return [{type: 'Agencia de viajes'}, {type: 'Rent a car'}, {type: 'Tours'}, {type: 'Hospedaje'}, {type: 'Restaurante'}];
+    }
 }
 
 @Component({

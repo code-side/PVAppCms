@@ -1,13 +1,15 @@
-
 <div *ngIf="touristicInterest">
-    <h2><span jhiTranslate="pvAppCmsApp.touristicInterest.detail.title">Touristic Interest</span> {{touristicInterest.id}}</h2>
-    <hr>
+    <div>
+        <img style="display:block; margin: 0 auto; height: 300px; width:55%" [src]="touristicInterest.photo">
+    </div>
+    <div>
+        <span><b>{{touristicInterest.name}}</b></span>
+        <span class="pull-right"><span jhiTranslate="pvAppCmsApp.touristicInterest.detail.title">Touristic Interest</span>ID: {{touristicInterest.id}}</span>
+      <hr>
+    </div>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="pvAppCmsApp.touristicInterest.name">Name</span></dt>
-        <dd>
-            <span>{{touristicInterest.name}}</span>
-        </dd>
+
         <dt><span jhiTranslate="pvAppCmsApp.touristicInterest.type">Type</span></dt>
         <dd>
             <span>{{touristicInterest.type}}</span>
@@ -28,10 +30,7 @@
         <dd>
             <span>{{touristicInterest.province.name}}</span>
         </dd>
-        <dt><span>Photo</span></dt>
-        <dd>
-           <img height="200" width="200" [src]="touristicInterest.photo">      
-        </dd>
+
     </dl>
 
     <button type="submit"

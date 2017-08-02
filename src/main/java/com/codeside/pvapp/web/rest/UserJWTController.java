@@ -3,6 +3,7 @@ package com.codeside.pvapp.web.rest;
 import com.codeside.pvapp.security.jwt.JWTConfigurer;
 import com.codeside.pvapp.security.jwt.TokenProvider;
 import com.codeside.pvapp.web.rest.vm.LoginVM;
+import com.codeside.pvapp.web.rest.vm.LoginMobile;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,6 +23,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Collections;
 
+import com.codeside.pvapp.domain.PVAppUser;
+import com.codeside.pvapp.repository.PVAppUserRepository;
+import com.codeside.pvapp.service.dto.PVAppUserDTO;
+import com.codeside.pvapp.service.mapper.PVAppUserMapper;
+import io.github.jhipster.web.util.ResponseUtil;
+import java.util.Optional;
 /**
  * Controller to authenticate users.
  */
@@ -35,9 +42,16 @@ public class UserJWTController {
 
     private final AuthenticationManager authenticationManager;
 
-    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager) {
+    private final PVAppUserRepository pVAppUserRepository;
+
+    private final PVAppUserMapper pVAppUserMapper;
+
+    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager,
+    PVAppUserRepository pVAppUserRepository,  PVAppUserMapper pVAppUserMapper) {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
+        this.pVAppUserRepository = pVAppUserRepository;
+        this.pVAppUserMapper = pVAppUserMapper;
     }
 
     @PostMapping("/authenticate")
@@ -60,6 +74,17 @@ public class UserJWTController {
                 ae.getLocalizedMessage()), HttpStatus.UNAUTHORIZED);
         }
     }
+    @PostMapping("/authenticateUser")
+      @Timed
+      public ResponseEntity<PVAppUserDTO> authenticateUser(@Valid @RequestBody LoginMobile login, HttpServletResponse response) {
+
+            PVAppUser pvAppUser = pVAppUserRepository.findOneByEmailAndPassword(login.getUsername(), login.getPassword());
+            PVAppUserDTO pVAppUserDTO = pVAppUserMapper.toDto(pvAppUser);
+            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pVAppUserDTO));
+        }
+
+
+
 
     /**
      * Object to return as body in JWT Authentication.

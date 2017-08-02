@@ -43,14 +43,14 @@
                <option *ngFor="let provName of provincesName" [ngValue]="provName">{{provName}}</option>
             </select>
         </div>
-
         <div *ngIf="selectedProvince !== undefined">
-            <div class="form-group">
-                <label class="form-control-label" for="field_province_canton">Canton</label>
-                <select class="form-control" name="canton" id="field_province_canton">
-                   <option *ngFor="let c of selectedProvince.cantons" [ngValue]="c">{{c}}</option>
-                </select>
-            </div>
+          <div class="form-group">
+              <label class="form-control-label" for="field_province_canton">Canton</label>
+              <select [(ngModel)]="ticoStop.province.canton" required class="form-control" name="canton" id="field_province_canton">
+                 <option *ngFor="let cantonName of cantons" [ngValue]="cantonName">{{cantonName}}</option>
+              </select>
+          </div>
+        </div>
 
     </div>
     <div class="modal-footer">

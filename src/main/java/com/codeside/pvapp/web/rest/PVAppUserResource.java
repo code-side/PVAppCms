@@ -25,6 +25,13 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+import com.cloudinary.*;
+import java.util.Map;
+import com.cloudinary.utils.ObjectUtils;
+import java.util.HashMap;
+import java.io.IOException;
+
+
 /**
  * REST controller for managing PVAppUser.
  */
@@ -39,6 +46,7 @@ public class PVAppUserResource {
     private final PVAppUserRepository pVAppUserRepository;
 
     private final PVAppUserMapper pVAppUserMapper;
+
 
     public PVAppUserResource(PVAppUserRepository pVAppUserRepository, PVAppUserMapper pVAppUserMapper) {
         this.pVAppUserRepository = pVAppUserRepository;
@@ -101,6 +109,16 @@ public class PVAppUserResource {
     @Timed
     public ResponseEntity<List<PVAppUserDTO>> getAllPVAppUsers(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of PVAppUsers");
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+          "cloud_name", "codesidedevs",
+          "api_key", "748436656856871",
+          "api_secret", "mvN_DfjWnvWgA7ZCaQyUdn4-p4Y"));
+        try{
+            Map uploadResult = cloudinary.uploader().upload("https://vignette2.wikia.nocookie.net/potcoplayers/images/7/7f/Asdf_Movie.jpg/revision/latest?cb=20110428025933", ObjectUtils.emptyMap());
+            System.out.println(uploadResult.get("url"));
+        }catch(IOException ex){
+
+        }
         Page<PVAppUser> page = pVAppUserRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-v-app-users");
         return new ResponseEntity<>(pVAppUserMapper.toDto(page.getContent()), headers, HttpStatus.OK);

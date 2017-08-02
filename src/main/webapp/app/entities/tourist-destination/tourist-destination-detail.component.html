@@ -1,56 +1,50 @@
-
 <div *ngIf="touristDestination">
     <h2><span jhiTranslate="pvAppCmsApp.touristDestination.detail.title">Tourist Destination</span> {{touristDestination.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.name">Name</span></dt>
-        <dd>
-            <span>{{touristDestination.name}}</span>
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.coordinates">Coordinates</span></dt>
-        <dd>
-            <span>{{touristDestination.coordinates}}</span>
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.description">Description</span></dt>
-        <dd>
-            <span>{{touristDestination.description}}</span>
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Main photo</span></dt>
-        <dd>
-            <img height="200" width="200" [src]="touristDestination.photos[0]">
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.address">Address</span></dt>
-        <dd>
-            <span>{{touristDestination.address}}</span>
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.province">Province</span></dt>
-        <dd>
-            <span>{{touristDestination.province.name}}</span>
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.attributes">Attributes</span></dt>
-        <dd>
-            <div *ngFor="let att of touristDestination.attributes" class="col-md-12">
-                <span><b>Pregunta:</b> {{att.name}} <b>Value:</b> {{att.value}}</span>
-            </div>
+    <dl class="row jh-entity-details">
+        <div class="col-md-6">
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Main photo</span></dt>
+            <dd>
+                <img height="200" width="200" [src]="touristDestination.photos[0]">
+            </dd>
+        </div>
+        <div class="col-md-6">
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.name">Name</span></dt>
+            <dd>
+                <span>{{touristDestination.name}}</span>
+            </dd>
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.coordinates">Coordinates</span></dt>
+            <dd>
+                <span>{{touristDestination.coordinates}}</span>
+            </dd>
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.description">Description</span></dt>
+            <dd>
+                <span>{{touristDestination.description}}</span>
+            </dd>
 
-        </dd>
-        <dt><span jhiTranslate="pvAppCmsApp.touristDestination.reviews">Reviews</span></dt>
-        <dd>
-            <span>{{touristDestination.reviews}}</span>
-        </dd>
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.address">Address</span></dt>
+            <dd>
+                <span>{{touristDestination.address}}</span>
+            </dd>
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.province">Province</span></dt>
+            <dd>
+                <span>{{touristDestination.province.name}}</span>
+            </dd>
+            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.attributes">Attributes</span></dt>
+            <dd>
+                <div *ngFor="let att of touristDestination.attributes" class="col-md-12">
+                    <span><b>Atributo:</b> {{att.name}}<br /><b>Valor:</b> {{att.value}}</span><br /><br />
+                </div>
+            </dd>
+        </div>
     </dl>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
+    <button type="submit" (click)="previousState()" class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'tourist-destination/'+ touristDestination.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
+    <button type="button" [routerLink]="['/', { outlets: { popup: 'tourist-destination/'+ touristDestination.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>

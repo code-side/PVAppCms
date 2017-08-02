@@ -22,7 +22,7 @@ export class ProvinceDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
     isEditEC: boolean;
-    emergencyContact:EmergencyContactRef;
+    emergencyContact: EmergencyContactRef;
     indexToEdit: number;
     typesOfEC: any[];
     constructor(
@@ -38,13 +38,12 @@ export class ProvinceDialogComponent implements OnInit {
         this.typesOfEC = this.initArrayOfECTypes();
         this.emergencyContact = new EmergencyContactRef();
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        if(this.province.id === undefined)
-            this.province.emergencyContacts = []
-
+        if (this.province.id === undefined) {
+            this.province.emergencyContacts = [];
+        }
         if (this.province !== null && this.province.cantons !== undefined) {
             this.cantons = this.province.cantons.join();
         }
-
     }
 
     clear() {
@@ -55,7 +54,9 @@ export class ProvinceDialogComponent implements OnInit {
     save() {
 
         this.isSaving = true;
-        this.province.cantons = this.cantons.split(',');
+        if (this.province.cantons !== undefined) {
+            this.province.cantons = this.cantons.split(',');
+        }
 
         if (this.province.id !== undefined) {
             this.subscribeToSaveResponse(
@@ -74,10 +75,10 @@ export class ProvinceDialogComponent implements OnInit {
     private onSaveSuccess(result: Province, isCreated: boolean) {
         this.alertService.success(
             isCreated ? 'pvAppCmsApp.province.created'
-            : 'pvAppCmsApp.province.updated',
-            { param : result.id }, null);
+                : 'pvAppCmsApp.province.updated',
+            { param: result.id }, null);
 
-        this.eventManager.broadcast({ name: 'provinceListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'provinceListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -95,42 +96,47 @@ export class ProvinceDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
-    addEmergencyContact(){
-        if(!this.isEditEC)
-            this.province.emergencyContacts.push(this.emergencyContact)
-        else{
-            this.province.emergencyContacts[this.indexToEdit].name = this.emergencyContact.name;
-            this.province.emergencyContacts[this.indexToEdit].type = this.emergencyContact.type;
-            this.province.emergencyContacts[this.indexToEdit].contact = this.emergencyContact.contact;
-            this.province.emergencyContacts[this.indexToEdit].workingHours = this.emergencyContact.workingHours;
+
+    addEmergencyContact() {
+        if (!this.isEditEC) {
+            this.province.emergencyContacts.push(this.emergencyContact);
+        } else {
+
+          this.province.emergencyContacts[this.indexToEdit].name = this.emergencyContact.name;
+          this.province.emergencyContacts[this.indexToEdit].type = this.emergencyContact.type;
+          this.province.emergencyContacts[this.indexToEdit].contact = this.emergencyContact.contact;
+          this.province.emergencyContacts[this.indexToEdit].workingHours = this.emergencyContact.workingHours;
+          this.province.emergencyContacts[this.indexToEdit].coordinates = this.emergencyContact.coordinates;
         }
         this.emergencyContact = new EmergencyContactRef();
         this.isEditEC = false;
-
     }
-    editEmergencyContact(ec: EmergencyContactRef, i: number){
+
+    editEmergencyContact(ec: EmergencyContactRef, i: number) {
         this.emergencyContact.name = ec.name;
         this.emergencyContact.type = ec.type;
         this.emergencyContact.contact = ec.contact;
         this.emergencyContact.workingHours = ec.workingHours;
+        this.emergencyContact.coordinates = ec.coordinates;
         this.isEditEC = true;
         this.indexToEdit = i;
     }
-    removeEmergencyContact(i: number){
-        this.province.emergencyContacts.splice(i,1);
-        if(this.isEditEC){
+
+    removeEmergencyContact(i: number) {
+        this.province.emergencyContacts.splice(i, 1);
+        if (this.isEditEC) {
             this.emergencyContact = new EmergencyContactRef();
             this.isEditEC = false;
         }
-
     }
-    cancelEdit(){
-          this.emergencyContact = new EmergencyContactRef();
-          this.isEditEC = !this.isEditEC;
-      }
 
-    initArrayOfECTypes(){
-         return [{type:'Policía'}, {type:'Ambulancia'},{type:'Hospital'},{type:'Bomberos'}]
+    cancelEdit() {
+        this.emergencyContact = new EmergencyContactRef();
+        this.isEditEC = !this.isEditEC;
+    }
+
+    initArrayOfECTypes() {
+        return [{ type: 'Policía' }, { type: 'Ambulancia' }, { type: 'Hospital' }, { type: 'Bomberos' }];
     }
 }
 
@@ -146,11 +152,11 @@ export class ProvincePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private provincePopupService: ProvincePopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.provincePopupService
                     .open(ProvinceDialogComponent, params['id']);
             } else {

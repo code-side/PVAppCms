@@ -27,6 +27,8 @@ public class TouristicInterestDTO implements Serializable {
 
     private String photo;
 
+    private String coordinates;
+
     public String getId() {
         return id;
     }
@@ -99,6 +101,19 @@ public class TouristicInterestDTO implements Serializable {
       this.photo = photo;
     }
 
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public TouristicInterestDTO coordinates(String coordinates) {
+        this.coordinates = coordinates;
+        return this;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -130,6 +145,7 @@ public class TouristicInterestDTO implements Serializable {
             ", contact='" + getContact() + "'" +
             ", address='" + getAddress() + "'" +
             ", reviews='" + getReviews() + "'" +
+            ", coordinates='" + getCoordinates()  + "'" +
             "}";
     }
 }

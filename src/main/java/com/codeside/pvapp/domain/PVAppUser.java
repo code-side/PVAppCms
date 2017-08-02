@@ -133,13 +133,13 @@ public class PVAppUser implements Serializable {
     private String gender;
 
     @Field("photo")
-    private String photo;
+    private Photo photo;
 
     @Field("status")
     private Integer status;
 
     @Field("favorite_list")
-    private List<TouristDestination> favoriteList = new ArrayList<>();
+    private List<TouristDestinationRef> favoriteList = new ArrayList<>();
 
     @Field("achievements")
     private List<Achievement> achievements = new ArrayList<>();
@@ -243,16 +243,16 @@ public class PVAppUser implements Serializable {
         this.gender = gender;
     }
 
-    public String getPhoto() {
+    public Photo getPhoto() {
         return photo;
     }
 
-    public PVAppUser photo(String photo) {
+    public PVAppUser photo(Photo photo) {
         this.photo = photo;
         return this;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Photo photo) {
         this.photo = photo;
     }
 
@@ -269,16 +269,16 @@ public class PVAppUser implements Serializable {
         this.status = status;
     }
 
-    public List<TouristDestination> getFavoriteList() {
+    public List<TouristDestinationRef> getFavoriteList() {
         return favoriteList;
     }
 
-    public PVAppUser favoriteList(List<TouristDestination> favoriteList) {
+    public PVAppUser favoriteList(List<TouristDestinationRef> favoriteList) {
         this.favoriteList = favoriteList;
         return this;
     }
 
-    public void setFavoriteList(List<TouristDestination> favoriteList) {
+    public void setFavoriteList(List<TouristDestinationRef> favoriteList) {
         this.favoriteList = favoriteList;
     }
 
