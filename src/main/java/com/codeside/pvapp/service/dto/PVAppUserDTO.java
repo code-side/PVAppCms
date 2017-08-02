@@ -3,7 +3,6 @@ package com.codeside.pvapp.service.dto;
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,9 +10,10 @@ import java.util.List;
  */
 public class PVAppUserDTO implements Serializable {
 
-    public static class TouristDestination implements Serializable {
+	public static class TouristDestination implements Serializable {
 
-        private String touristDestinationId;
+        private static final long serialVersionUID = 1L;
+		private String touristDestinationId;
         private String name;
 
         public String getTouristDestinationId() {
@@ -42,7 +42,8 @@ public class PVAppUserDTO implements Serializable {
      };
 
     public static class Achievement implements Serializable {
-        private String name;
+        private static final long serialVersionUID = 1L;
+		private String name;
         private String description;
         private String progress;
         private String goal;
@@ -101,28 +102,18 @@ public class PVAppUserDTO implements Serializable {
         }
     };
 
-    private String id;
-
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
     private String email;
-
     private String password;
-
     private LocalDate registrationDate;
-
     private LocalDate birthday;
-
     private String nationality;
-
     private String gender;
-
     private PhotoDTO photo;
-
     private Integer status;
-
     private List<TouristDestination> favoriteList;
-
     private List<Achievement> achievements;
 
     public String getId() {

@@ -1,31 +1,17 @@
-package com.codeside.pvapp.domain;
+package com.codeside.pvapp.service.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
- * Generic Attribute Reference.
+ * A DTO for Generic Attribute Reference.
  */
-@Document(collection = "attribute_ref")
-public class AttributeRef implements Serializable {
+public class AttributeDTO implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    private String id;
-
-    @Field("name")
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
-    @Field("value")
     private String value;
-
-    @Field("type")
     private String type;
-
-    @Field("idiom")
     private String idiom;
 
     public String getId() {
@@ -40,7 +26,7 @@ public class AttributeRef implements Serializable {
         return name;
     }
 
-    public AttributeRef name(String name) {
+    public AttributeDTO name(String name) {
         this.name = name;
         return this;
     }
@@ -53,7 +39,7 @@ public class AttributeRef implements Serializable {
         return value;
     }
 
-    public AttributeRef value(String value) {
+    public AttributeDTO value(String value) {
         this.value = value;
         return this;
     }
@@ -66,7 +52,7 @@ public class AttributeRef implements Serializable {
         return type;
     }
 
-    public AttributeRef type(String type) {
+    public AttributeDTO type(String type) {
         this.type = type;
         return this;
     }
@@ -79,7 +65,7 @@ public class AttributeRef implements Serializable {
         return idiom;
     }
 
-    public AttributeRef idiom(String idiom) {
+    public AttributeDTO idiom(String idiom) {
         this.idiom = idiom;
         return this;
     }
@@ -90,7 +76,7 @@ public class AttributeRef implements Serializable {
 
     @Override
     public String toString() {
-        return "AttributeRef{" +
+        return "AttributeDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", value='" + getValue() + "'" +

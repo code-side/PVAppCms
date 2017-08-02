@@ -10,22 +10,15 @@ import java.util.ArrayList;
  */
 public class ProvinceDTO implements Serializable {
 
-    private String id;
-
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
     private String coordinates;
-
     private String history;
-
     private String culture;
-
     private String photo;
-
     private String idiom;
-
     private List<String> cantons = new ArrayList<>();
-
     private EmergencyContactRefDTO[] emergencyContacts;
 
     public String getId() {

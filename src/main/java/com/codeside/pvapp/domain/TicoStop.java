@@ -23,7 +23,7 @@ public class TicoStop implements Serializable {
     private String historicalReview;
 
     @Field("coordinates")
-    private String coordinates;
+    private Coordinate coordinates;
 
     @Field("photo")
     private String photo;
@@ -68,16 +68,16 @@ public class TicoStop implements Serializable {
         this.historicalReview = historicalReview;
     }
 
-    public String getCoordinates() {
+    public Coordinate getCoordinates() {
         return coordinates;
     }
 
-    public TicoStop coordinates(String coordinates) {
+    public TicoStop coordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
         return this;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
     }
 
