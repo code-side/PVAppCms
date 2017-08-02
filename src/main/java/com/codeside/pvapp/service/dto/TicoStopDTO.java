@@ -9,18 +9,13 @@ import java.util.Objects;
  */
 public class TicoStopDTO implements Serializable {
 
-    private String id;
-
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
     private String historicalReview;
-
-    private String coordinates;
-
+    private CoordinateDTO coordinates;
     private String photo;
-
     private String address;
-
     private ProvinceRefDTO province;
 
     public String getId() {
@@ -47,11 +42,11 @@ public class TicoStopDTO implements Serializable {
         this.historicalReview = historicalReview;
     }
 
-    public String getCoordinates() {
+    public CoordinateDTO getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(CoordinateDTO coordinates) {
         this.coordinates = coordinates;
     }
 

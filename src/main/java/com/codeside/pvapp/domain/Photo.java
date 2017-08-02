@@ -23,9 +23,6 @@ public class Photo implements Serializable {
     @Field("state")
     private String state;
 
-    @Field("description")
-    private String description;
-
     @Field("reports")
     private List<String> reports;
     
@@ -57,14 +54,6 @@ public class Photo implements Serializable {
 		this.state = state;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public List<String> getReports() {
 		return reports;
 	}
@@ -79,7 +68,6 @@ public class Photo implements Serializable {
             "id=" + getId() +
             ", url='" + getUrl() + "'" +
             ", state='" + getState() + "'" +
-            ", description='" + getDescription() + "'" +
             ", reporst='" + getReports().size() + "'" +
             "}";
     }

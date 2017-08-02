@@ -22,7 +22,7 @@ public class TouristDestination implements Serializable {
     private String name;
 
     @Field("coordinates")
-    private String coordinates;
+    private Coordinate coordinates;
 
     @Field("description")
     private String description;
@@ -69,16 +69,16 @@ public class TouristDestination implements Serializable {
         this.name = name;
     }
 
-    public String getCoordinates() {
+    public Coordinate getCoordinates() {
         return coordinates;
     }
 
-    public TouristDestination coordinates(String coordinates) {
+    public TouristDestination coordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
         return this;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
     }
 

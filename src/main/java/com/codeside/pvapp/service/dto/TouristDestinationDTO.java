@@ -13,7 +13,7 @@ public class TouristDestinationDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id;
     private String name;
-    private String coordinates;
+    private CoordinateDTO coordinates;
     private String description;
     private List<PhotoDTO> photos;
     private String address;
@@ -43,11 +43,11 @@ public class TouristDestinationDTO implements Serializable {
         this.name = name;
     }
 
-    public String getCoordinates() {
+    public CoordinateDTO getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(CoordinateDTO coordinates) {
         this.coordinates = coordinates;
     }
 

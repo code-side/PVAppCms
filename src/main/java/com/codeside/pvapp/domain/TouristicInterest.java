@@ -41,7 +41,7 @@ public class TouristicInterest implements Serializable {
     private String photo;
 
     @Field("coordinates")
-    private String coordinates;
+    private Coordinate coordinates;
 
     public String getId() {
         return id;
@@ -155,16 +155,16 @@ public class TouristicInterest implements Serializable {
         this.photo = photo;
     }
 
-    public String getCoordinates() {
+    public Coordinate getCoordinates() {
         return coordinates;
     }
 
-    public TouristicInterest coordinates(String coordinates) {
+    public TouristicInterest coordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
         return this;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
     }
 
