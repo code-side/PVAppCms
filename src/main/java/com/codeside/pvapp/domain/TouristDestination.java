@@ -22,13 +22,13 @@ public class TouristDestination implements Serializable {
     private String name;
 
     @Field("coordinates")
-    private String coordinates;
+    private Coordinate coordinates;
 
     @Field("description")
     private String description;
 
     @Field("photos")
-    private List<String> photos = new ArrayList<>();
+    private List<Photo> photos;
 
     @Field("address")
     private String address;
@@ -37,11 +37,17 @@ public class TouristDestination implements Serializable {
     private ProvinceRef province;
 
     @Field("attributes")
-    private AttributeRef[] attributes;
+    private List<Attribute> attributes;
 
     @Field("reviews")
-    private String reviews;
+    private List<Review> reviews;
 
+    public TouristDestination() {
+    	photos = new ArrayList<>();
+    	attributes = new ArrayList<>();
+    	reviews = new ArrayList<>();
+    }
+    
     public String getId() {
         return id;
     }
@@ -63,16 +69,16 @@ public class TouristDestination implements Serializable {
         this.name = name;
     }
 
-    public String getCoordinates() {
+    public Coordinate getCoordinates() {
         return coordinates;
     }
 
-    public TouristDestination coordinates(String coordinates) {
+    public TouristDestination coordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
         return this;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(Coordinate coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -89,16 +95,16 @@ public class TouristDestination implements Serializable {
         this.description = description;
     }
 
-    public List<String> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public TouristDestination photos(List<String> photos) {
+    public TouristDestination photos(List<Photo> photos) {
         this.photos = photos;
         return this;
     }
 
-    public void setPhotos(List<String> photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 
@@ -128,29 +134,29 @@ public class TouristDestination implements Serializable {
         this.province = province;
     }
 
-    public AttributeRef[] getAttributes() {
+    public List<Attribute> getAttributes() {
         return attributes;
     }
 
-    public TouristDestination attributes(AttributeRef[] attributes) {
+    public TouristDestination attributes(List<Attribute> attributes) {
         this.attributes = attributes;
         return this;
     }
 
-    public void setAttributes(AttributeRef[] attributes) {
+    public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
     }
 
-    public String getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public TouristDestination reviews(String reviews) {
+    public TouristDestination reviews(List<Review> reviews) {
         this.reviews = reviews;
         return this;
     }
 
-    public void setReviews(String reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
@@ -184,7 +190,8 @@ public class TouristDestination implements Serializable {
             ", photos='" + getPhotos().size() + "'" +
             ", address='" + getAddress() + "'" +
             ", province='" + getProvince().toString() + "'" +
-            ", reviews='" + getReviews() + "'" +
+            ", attributes='" + getAttributes().size() + "'" +
+            ", reviews='" + getReviews().size() + "'" +
             "}";
     }
 }

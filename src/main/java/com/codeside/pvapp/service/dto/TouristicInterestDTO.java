@@ -9,25 +9,17 @@ import java.util.Objects;
  */
 public class TouristicInterestDTO implements Serializable {
 
-    private String id;
-
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String name;
-
     private String type;
-
     private String workingHours;
-
     private String contact;
-
     private String address;
-
     private ProvinceRefDTO province;
-
     private String reviews;
-
     private String photo;
-
-    private String coordinates;
+    private CoordinateDTO coordinates;
 
     public String getId() {
         return id;
@@ -101,16 +93,16 @@ public class TouristicInterestDTO implements Serializable {
       this.photo = photo;
     }
 
-    public String getCoordinates() {
+    public CoordinateDTO getCoordinates() {
         return coordinates;
     }
 
-    public TouristicInterestDTO coordinates(String coordinates) {
+    public TouristicInterestDTO coordinates(CoordinateDTO coordinates) {
         this.coordinates = coordinates;
         return this;
     }
 
-    public void setCoordinates(String coordinates) {
+    public void setCoordinates(CoordinateDTO coordinates) {
         this.coordinates = coordinates;
     }
 
