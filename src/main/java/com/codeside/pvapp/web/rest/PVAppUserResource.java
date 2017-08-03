@@ -64,6 +64,7 @@ public class PVAppUserResource {
     @Timed
     public ResponseEntity<PVAppUserDTO> createPVAppUser(@RequestBody PVAppUserDTO pVAppUserDTO) throws URISyntaxException {
         log.debug("REST request to save PVAppUser : {}", pVAppUserDTO);
+        System.out.println(pVAppUserDTO.toString());
         if (pVAppUserDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new pVAppUser cannot already have an ID")).body(null);
         }
