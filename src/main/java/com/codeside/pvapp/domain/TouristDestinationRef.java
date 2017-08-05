@@ -27,6 +27,7 @@ public class TouristDestinationRef implements Serializable {
     @Field("photos")
     private List<Photo> photos = new ArrayList<>();
 
+
     public String getId() {
         return id;
     }
