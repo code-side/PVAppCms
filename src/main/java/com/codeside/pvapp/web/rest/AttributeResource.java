@@ -1,20 +1,15 @@
 package com.codeside.pvapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.codeside.pvapp.domain.AttributeRef;
+import com.codeside.pvapp.domain.Attribute;
 
 import com.codeside.pvapp.repository.AttributeRepository;
 import com.codeside.pvapp.web.rest.util.HeaderUtil;
-import com.codeside.pvapp.web.rest.util.PaginationUtil;
-import com.codeside.pvapp.service.dto.AttributeRefDTO;
+import com.codeside.pvapp.service.dto.AttributeDTO;
 import com.codeside.pvapp.service.mapper.AttributeMapper;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing AttributeRef.
+ * REST controller for managing Attribute.
  */
 @RestController
 @RequestMapping("/api")
@@ -46,91 +41,90 @@ public class AttributeResource {
     }
 
     /**
-     * POST  /AttributeRefs : Create a new AttributeRef.
+     * POST  /Attributes : Create a new Attribute.
      *
-     * @param AttributeRefDTO the AttributeRefDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new AttributeRefDTO, or with status 400 (Bad Request) if the AttributeRef has already an ID
+     * @param AttributeDTO the AttributeDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new AttributeDTO, or with status 400 (Bad Request) if the Attribute has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/Attributes")
+    @PostMapping("/attributes")
     @Timed
-    public ResponseEntity<AttributeRefDTO> createAttributeRef(@RequestBody AttributeRefDTO AttributeRefDTO) throws URISyntaxException {
-        log.debug("REST request to save AttributeRef : {}", AttributeRefDTO);
-        if (AttributeRefDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new AttributeRef cannot already have an ID")).body(null);
+    public ResponseEntity<AttributeDTO> createAttributeRef(@RequestBody AttributeDTO attributeDTO) throws URISyntaxException {
+        log.debug("REST request to save Attribute : {}", attributeDTO);
+        if (attributeDTO.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new Attribute cannot already have an ID")).body(null);
         }
-        AttributeRef AttributeRef = attributeMapper.toEntity(AttributeRefDTO);
-        AttributeRef = attributeRepository.save(AttributeRef);
-        AttributeRefDTO result = attributeMapper.toDto(AttributeRef);
-        return ResponseEntity.created(new URI("/api/Attributes/" + result.getId()))
+        Attribute attribute = attributeMapper.toEntity(attributeDTO);
+        attribute = attributeRepository.save(attribute);
+        AttributeDTO result = attributeMapper.toDto(attribute);
+        return ResponseEntity.created(new URI("/api/attributes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /AttributeRefs : Updates an existing AttributeRef.
+     * PUT  /Attributes : Updates an existing Attribute.
      *
-     * @param AttributeRefDTO the AttributeRefDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated AttributeRefDTO,
-     * or with status 400 (Bad Request) if the AttributeRefDTO is not valid,
-     * or with status 500 (Internal Server Error) if the AttributeRefDTO couldn't be updated
+     * @param AttributeDTO the AttributeDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated AttributeDTO,
+     * or with status 400 (Bad Request) if the AttributeDTO is not valid,
+     * or with status 500 (Internal Server Error) if the AttributeDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/Attributes")
+    @PutMapping("/attributes")
     @Timed
-    public ResponseEntity<AttributeRefDTO> updateAttributeRef(@RequestBody AttributeRefDTO AttributeRefDTO) throws URISyntaxException {
-        log.debug("REST request to update AttributeRef : {}", AttributeRefDTO);
-        if (AttributeRefDTO.getId() == null) {
-            return createAttributeRef(AttributeRefDTO);
+    public ResponseEntity<AttributeDTO> updateAttributeRef(@RequestBody AttributeDTO attributeDTO) throws URISyntaxException {
+        log.debug("REST request to update Attribute : {}", attributeDTO);
+        if (attributeDTO.getId() == null) {
+            return createAttributeRef(attributeDTO);
         }
-        AttributeRef AttributeRef = attributeMapper.toEntity(AttributeRefDTO);
-        AttributeRef = attributeRepository.save(AttributeRef);
-        AttributeRefDTO result = attributeMapper.toDto(AttributeRef);
+        Attribute attribute = attributeMapper.toEntity(attributeDTO);
+        attribute = attributeRepository.save(attribute);
+        AttributeDTO result = attributeMapper.toDto(attribute);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, AttributeRefDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, attributeDTO.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /AttributeRefs : get all the AttributeRefs.
+     * GET  /Attributes : get all the Attributes.
      *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of AttributeRefs in body
+     * @param lang the idiom version of the information
+     * @return the ResponseEntity with status 200 (OK) and the list of Attributes in body
      */
-    @GetMapping("/Attributes")
+    @GetMapping("/attributes")
     @Timed
-    public ResponseEntity<List<AttributeRefDTO>> getAllAttributeRefs(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of AttributeRefs");
-        Page<AttributeRef> page = attributeRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/Attributes");
-        return new ResponseEntity<>(attributeMapper.toDto(page.getContent()), headers, HttpStatus.OK);
+    public ResponseEntity<List<AttributeDTO>> getAllAttributeRefs(@RequestParam(required=false, defaultValue="en") String lang) {
+        log.debug("REST request to get Attributes in lang : " + lang);
+        List<Attribute> results = attributeRepository.findAllByIdiom(lang);
+        return new ResponseEntity<>(attributeMapper.toDto(results), HttpStatus.OK);
     }
 
     /**
-     * GET  /AttributeRefs/:id : get the "id" AttributeRef.
+     * GET  /Attributes/:id : get the "id" Attribute.
      *
-     * @param id the id of the AttributeRefDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the AttributeRefDTO, or with status 404 (Not Found)
+     * @param id the id of the AttributeDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the AttributeDTO, or with status 404 (Not Found)
      */
     @GetMapping("/Attributes/{id}")
     @Timed
-    public ResponseEntity<AttributeRefDTO> getAttributeRef(@PathVariable String id) {
-        log.debug("REST request to get AttributeRef : {}", id);
-        AttributeRef AttributeRef = attributeRepository.findOne(id);
-        AttributeRefDTO AttributeRefDTO = attributeMapper.toDto(AttributeRef);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(AttributeRefDTO));
+    public ResponseEntity<AttributeDTO> getAttributeRef(@PathVariable String id) {
+        log.debug("REST request to get Attribute : {}", id);
+        Attribute attribute = attributeRepository.findOne(id);
+        AttributeDTO attributeDTO = attributeMapper.toDto(attribute);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(attributeDTO));
     }
 
     /**
-     * DELETE  /AttributeRefs/:id : delete the "id" AttributeRef.
+     * DELETE  /attributes/:id : delete the "id" Attribute.
      *
-     * @param id the id of the AttributeRefDTO to delete
+     * @param id the id of the AttributeDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/Attributes/{id}")
+    @DeleteMapping("/attributes/{id}")
     @Timed
     public ResponseEntity<Void> deleteAttributeRef(@PathVariable String id) {
-        log.debug("REST request to delete AttributeRef : {}", id);
+        log.debug("REST request to delete Attribute : {}", id);
         attributeRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id)).build();
     }

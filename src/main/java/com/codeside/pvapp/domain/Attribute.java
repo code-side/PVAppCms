@@ -1,17 +1,30 @@
-package com.codeside.pvapp.service.dto;
+package com.codeside.pvapp.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
- * A DTO for Generic Attribute Reference.
+ * Generic Attribute Reference.
  */
-public class AttributeRefDTO implements Serializable {
+@Document(collection = "attributes")
+public class Attribute implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
     private String id;
+
+    @Field("name")
     private String name;
+
+    @Field("value")
     private String value;
+
+    @Field("type")
     private String type;
+
+    @Field("idiom")
     private String idiom;
 
     public String getId() {
@@ -26,7 +39,7 @@ public class AttributeRefDTO implements Serializable {
         return name;
     }
 
-    public AttributeRefDTO name(String name) {
+    public Attribute name(String name) {
         this.name = name;
         return this;
     }
@@ -39,7 +52,7 @@ public class AttributeRefDTO implements Serializable {
         return value;
     }
 
-    public AttributeRefDTO value(String value) {
+    public Attribute value(String value) {
         this.value = value;
         return this;
     }
@@ -52,7 +65,7 @@ public class AttributeRefDTO implements Serializable {
         return type;
     }
 
-    public AttributeRefDTO type(String type) {
+    public Attribute type(String type) {
         this.type = type;
         return this;
     }
@@ -65,7 +78,7 @@ public class AttributeRefDTO implements Serializable {
         return idiom;
     }
 
-    public AttributeRefDTO idiom(String idiom) {
+    public Attribute idiom(String idiom) {
         this.idiom = idiom;
         return this;
     }
@@ -76,7 +89,7 @@ public class AttributeRefDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "AttributeRef{" +
+        return "Attribute{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", value='" + getValue() + "'" +

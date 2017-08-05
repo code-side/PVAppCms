@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Generic Photo Reference.
+ * A DTO for Generic Photo Reference.
  */
 public class PhotoDTO implements Serializable {
 
@@ -67,7 +67,7 @@ public class PhotoDTO implements Serializable {
             ", url='" + getUrl() + "'" +
             ", state='" + getState() + "'" +
             ", description='" + getDescription() + "'" +
-            ", reporst='" + getReports().size() + "'" +
+            ", reports='" + getReports().size() + "'" +
             "}";
     }
 }

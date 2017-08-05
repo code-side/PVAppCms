@@ -1,97 +1,93 @@
 package com.codeside.pvapp.service.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
-* A DTO for Generic EmergencyContacts Reference
-*/
+ * A DTO for Generic EmergencyContacts Reference
+ */
 
 public class EmergencyContactRefDTO implements Serializable {
 
-  private String name;
+	private static final long serialVersionUID = 1L;
+	private String name;
+	private String type;
+	private String contact;
+	private String workingHours;
+	private String coordinates;
 
-  private String type;
+	public String getName(){
+		return name;
+	}
 
-  private String contact;
+	public EmergencyContactRefDTO name (String name){
+		this.name=name;
+		return this;
+	}
 
-  private String workingHours;
+	public void setName(String name){
+		this.name = name;
+	}
 
-  private String coordinates;
+	public String getType(){
+		return type;
+	}
 
-  public String getName(){
-    return name;
-  }
+	public EmergencyContactRefDTO type (String type){
+		this.type = type;
+		return this;
+	}
 
-  public EmergencyContactRefDTO name (String name){
-    this.name=name;
-    return this;
-  }
+	public void setType(String type){
+		this.type = type;
+	}
 
-  public void setName(String name){
-    this.name = name;
-  }
+	public String getContact(){
+		return contact;
+	}
 
-  public String getType(){
-    return type;
-  }
+	public EmergencyContactRefDTO contact (String contact){
+		this.contact = contact;
+		return this;
+	}
 
-  public EmergencyContactRefDTO type (String type){
-    this.type = type;
-    return this;
-  }
+	public void setContact(String contact){
+		this.contact = contact;
+	}
 
-  public void setType(String type){
-    this.type = type;
-  }
+	public String getWorkingHours(){
+		return workingHours;
+	}
 
-  public String getContact(){
-    return contact;
-  }
+	public EmergencyContactRefDTO workingHours(String workingHours){
+		this.workingHours = workingHours;
+		return this;
+	}
 
-  public EmergencyContactRefDTO contact (String contact){
-    this.contact = contact;
-    return this;
-  }
+	public void setWorkingHours(String workingHours){
+		this.workingHours = workingHours;
+	}
 
-  public void setContact(String contact){
-    this.contact = contact;
-  }
+	public String getCoordinates(){
+		return coordinates;
+	}
 
-  public String getWorkingHours(){
-    return workingHours;
-  }
+	public EmergencyContactRefDTO coordinates (String coordinates){
+		this.coordinates = coordinates;
+		return this;
+	}
 
-  public EmergencyContactRefDTO workingHours(String workingHours){
-    this.workingHours = workingHours;
-    return this;
-  }
+	public void setCoordinates(String coordinates){
+		this.coordinates = coordinates;
+	}
 
-  public void setWorkingHours(String workingHours){
-    this.workingHours = workingHours;
-  }
-
-  public String getCoordinates(){
-    return coordinates;
-  }
-
-  public EmergencyContactRefDTO coordinates (String coordinates){
-    this.coordinates = coordinates;
-    return this;
-  }
-
-  public void setCoordinates(String coordinates){
-    this.coordinates = coordinates;
-  }
-
-  @Override
-  public String toString(){
-    return "EmergencyContactRef{" +
-    ", name= '" + getName() + "'" +
-    ", type= '" + getType() + "'" +
-    ", contact= '" + getContact() + "'" +
-    ", workingHours= '" + getWorkingHours() + "'" +
-    ", coordinates= '" + getCoordinates() + "'" +
-    "}";
-  }
+	@Override
+	public String toString(){
+		return "EmergencyContactRef{" +
+				", name= '" + getName() + "'" +
+				", type= '" + getType() + "'" +
+				", contact= '" + getContact() + "'" +
+				", workingHours= '" + getWorkingHours() + "'" +
+				", coordinates= '" + getCoordinates() + "'" +
+				"}";
+	}
 }
