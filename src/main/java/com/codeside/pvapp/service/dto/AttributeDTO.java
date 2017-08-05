@@ -18,6 +18,11 @@ public class AttributeDTO implements Serializable {
         return id;
     }
 
+		public AttributeDTO id(String id) {
+        this.id = id;
+        return this;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

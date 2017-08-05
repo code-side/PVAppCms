@@ -94,9 +94,9 @@ public class ProvinceResource {
      */
     @GetMapping("/provinces")
     @Timed
-    public ResponseEntity<List<ProvinceDTO>> getAllProvinces(@RequestParam(required=false, defaultValue="en") String lang) {
+    public ResponseEntity<List<ProvinceDTO>> getAllProvinces(@RequestParam(required=false) String lang) {
         log.debug("REST request to get a page of Provinces");
-        List<Province> results = provinceRepository.findAllByIdiom(lang);
+        List<Province> results = (lang == null ? provinceRepository.findAll() : provinceRepository.findAllByIdiom(lang));
         return new ResponseEntity<>(provinceMapper.toDto(results), HttpStatus.OK);
     }
 
