@@ -24,6 +24,16 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
+
+import com.cloudinary.*;
+import java.util.Map;
+import com.cloudinary.utils.ObjectUtils;
+import java.util.HashMap;
+import java.io.IOException;
 
 /**
  * REST controller for managing TouristDestination.
@@ -83,12 +93,22 @@ public class TouristDestinationResource {
         if (touristDestinationDTO.getId() == null) {
             return createTouristDestination(touristDestinationDTO);
         }
+
         TouristDestination touristDestination = touristDestinationMapper.toEntity(touristDestinationDTO);
-        touristDestination = touristDestinationRepository.save(touristDestination);
-        TouristDestinationDTO result = touristDestinationMapper.toDto(touristDestination);
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+          "cloud_name", "codesidedevs",
+          "api_key", "748436656856871",
+          "api_secret", "mvN_DfjWnvWgA7ZCaQyUdn4-p4Y"));
+        try{
+            Map uploadResult = cloudinary.uploader().upload(touristDestination.getPhotos().get(touristDestination.getPhotos().size() - 1).getUrl(), ObjectUtils.emptyMap());
+            System.out.println(uploadResult.get("url"));
+            touristDestination.getPhotos().get(touristDestination.getPhotos().size() - 1).setUrl(uploadResult.get("url").toString());
+        }catch(IOException ex){}
+
+        TouristDestinationDTO result = touristDestinationMapper.toDto(touristDestinationRepository.save(touristDestination));
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, touristDestinationDTO.getId().toString()))
-            .body(result);
+              .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, touristDestinationDTO.getId().toString()))
+              .body(result);
     }
 
     /**
