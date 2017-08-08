@@ -17,10 +17,16 @@
             <input type="text" class="form-control" required name="name" id="field_name"
                 [(ngModel)]="touristDestination.name"  />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.coordinates" for="field_coordinates">Coordinates</label>
+        <h1>Coordinates</h1>
+        <div *ngIf="touristDestination.coordinates !== undefined" class="form-group">
+            <label class="form-control-label" for="field_latitude">Latitude</label>
             <input type="text" class="form-control" required name="coordinates" id="field_coordinates"
-                [(ngModel)]="touristDestination.coordinates"  />
+                [(ngModel)]="touristDestination.coordinates.latitude"  />
+        </div>
+        <div  *ngIf="touristDestination.coordinates !== undefined" class="form-group">
+            <label class="form-control-label" for="field_latitude">Longitude</label>
+            <input type="text" class="form-control" required name="longitude" id="field_coordinates"
+                [(ngModel)]="touristDestination.coordinates.longitude"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.description" for="field_description">Description</label>
