@@ -30,7 +30,7 @@
         <div class="form-group">
             <label class="form-control-label" for="field_photo">Main photo</label>
             <input type="text" class="form-control" required name="photo" id="field_photo"
-                [(ngModel)]="photo"  (ngModelChange)="savePhoto()"  />
+                [(ngModel)]="photo.url"  (ngModelChange)="savePhoto()"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="pvAppCmsApp.touristDestination.address" for="field_address">Address</label>

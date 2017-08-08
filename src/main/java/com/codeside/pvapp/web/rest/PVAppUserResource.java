@@ -91,6 +91,7 @@ public class PVAppUserResource {
             }catch(IOException ex){}
         }
         pVAppUserDTO.setRegistrationDate(LocalDate.now());
+        pVAppUserDTO.setStatus(1);
         PVAppUser pVAppUser = pVAppUserMapper.toEntity(pVAppUserDTO);
         pVAppUser = pVAppUserRepository.save(pVAppUser);
         PVAppUserDTO result = pVAppUserMapper.toDto(pVAppUser);

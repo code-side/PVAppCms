@@ -17,7 +17,6 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.touristDestination.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="coordinates"><span jhiTranslate="pvAppCmsApp.touristDestination.coordinates">Coordinates</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="pvAppCmsApp.touristDestination.description">Description</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.touristDestination.address">Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.touristDestination.province">Province</span> <span class="fa fa-sort"></span></th>
@@ -27,7 +26,6 @@
             <tbody>
             <tr *ngFor="let touristDestination of touristDestinations ;trackBy: trackId">
                 <td>{{touristDestination.name}}</td>
-                <td>{{touristDestination.coordinates}}</td>
                 <td>{{touristDestination.description}}</td>
                 <td>{{touristDestination.address}}</td>
                 <td>{{touristDestination.province.name}}</td>

@@ -18,7 +18,6 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="name"><span jhiTranslate="pvAppCmsApp.ticoStop.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="historicalReview"><span jhiTranslate="pvAppCmsApp.ticoStop.historicalReview">Historical Review</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="coordinates"><span jhiTranslate="pvAppCmsApp.ticoStop.coordinates">Coordinates</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="address"><span jhiTranslate="pvAppCmsApp.ticoStop.address">Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="province"><span jhiTranslate="pvAppCmsApp.ticoStop.province">Province</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -28,7 +27,6 @@
             <tr *ngFor="let ticoStop of ticoStops ;trackBy: trackId">
                 <td>{{ticoStop.name}}</td>
                 <td>{{ticoStop.historicalReview | slice:0:100}}...</td>
-                <td>{{ticoStop.coordinates}}</td>
                 <td>{{ticoStop.address}}</td>
                 <td>{{ticoStop.province.name}}, {{ticoStop.province.canton}}</td>
                 <td class="text-right">
