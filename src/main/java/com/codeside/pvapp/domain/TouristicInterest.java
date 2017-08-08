@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A TouristicInterest.
@@ -35,7 +37,7 @@ public class TouristicInterest implements Serializable {
     private ProvinceRef province;
 
     @Field("reviews")
-    private String reviews;
+    private List<Review> reviews;
 
     @Field("photo")
     private String photo;
@@ -129,16 +131,16 @@ public class TouristicInterest implements Serializable {
         this.province = province;
     }
 
-    public String getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public TouristicInterest reviews(String reviews) {
+    public TouristicInterest reviews(List<Review> reviews) {
         this.reviews = reviews;
         return this;
     }
 
-    public void setReviews(String reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
@@ -197,7 +199,6 @@ public class TouristicInterest implements Serializable {
             ", workingHours='" + getWorkingHours() + "'" +
             ", contact='" + getContact() + "'" +
             ", address='" + getAddress() + "'" +
-            ", reviews='" + getReviews() + "'" +
             ", photoURL='" + getPhoto()  + "'" +
             ", coordinates='" + getCoordinates()  + "'" +
             "}";
