@@ -29,10 +29,16 @@ spring:
             uri: mongodb://root:root@13.59.144.99:27017/PVAppCms
             database: PVAppCms
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: codesidedevs@gmail.com
+        password: ernestRico
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
     messages:
         cache-seconds: 1
     thymeleaf:
