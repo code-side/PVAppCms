@@ -28,11 +28,13 @@ export class TouristDestinationDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInTouristDestinations();
+
     }
 
     load(id) {
         this.touristDestinationService.find(id).subscribe((touristDestination) => {
             this.touristDestination = touristDestination;
+            console.log(this.touristDestination);
         });
     }
     previousState() {

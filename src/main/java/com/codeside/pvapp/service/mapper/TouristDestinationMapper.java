@@ -11,6 +11,4 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {ProvinceRefMapper.class, AttributeMapper.class, PhotoMapper.class, ReviewMapper.class, CoordinateMapper.class})
 public interface TouristDestinationMapper extends EntityMapper <TouristDestinationDTO, TouristDestination> {
 
-
-
 }

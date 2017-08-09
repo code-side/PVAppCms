@@ -16,6 +16,9 @@ import { ProvinceRef } from '../province/province-ref.model';
 import { ProvinceService } from '../province/province.service';
 import { AttributeRef } from './attribute-ref.model';
 
+import { CoordinatesRef } from './coordinates-ref.model';
+import { PhotoRef } from './photo-ref.model';
+
 @Component({
     selector: 'jhi-tourist-destination-dialog',
     templateUrl: './tourist-destination-dialog.component.html'
@@ -31,7 +34,7 @@ export class TouristDestinationDialogComponent implements OnInit {
     attribute: AttributeRef;
     isEditAtt: boolean;
     indexToEdit: number;
-    photo: string;
+    photo: PhotoRef;
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
@@ -45,7 +48,7 @@ export class TouristDestinationDialogComponent implements OnInit {
         this.isEditAtt = false;
         this.attribute = new AttributeRef();
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.photo = '';
+        this.photo = new PhotoRef();
         this.provinceService.query().subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
@@ -53,11 +56,15 @@ export class TouristDestinationDialogComponent implements OnInit {
     }
 
     private onSuccess(data, headers) {
+        console.log('Tourist Destination', this.touristDestination);
         this.provinces = data;
         if (this.touristDestination.id === undefined) {
             this.touristDestination.province = new ProvinceRef();
+            this.touristDestination.coordinates = new CoordinatesRef();
+            this.touristDestination.coordinates.latitude ='';
+            this.touristDestination.coordinates.longitude ='';
             this.touristDestination.attributes = [];
-            this.touristDestination.photos = [];
+            this.touristDestination.photos = [new PhotoRef()];
         }else {
             this.findProvince();
             this.photo = this.touristDestination.photos[0];
