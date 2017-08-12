@@ -4,9 +4,9 @@
     <jhi-alert-error></jhi-alert-error>
     <dl class="row jh-entity-details">
         <div class="col-md-6">
-            <dt><span jhiTranslate="pvAppCmsApp.touristDestination.photos">Main photo</span></dt>
+            <dt><span>Photo</span></dt>
             <dd>
-                <img height="200" width="200" [src]="touristDestination.photos[0]">
+                <img height="200" width="200" [src]="touristDestination.photos[0].url">
             </dd>
         </div>
         <div class="col-md-6">
@@ -16,7 +16,7 @@
             </dd>
             <dt><span jhiTranslate="pvAppCmsApp.touristDestination.coordinates">Coordinates</span></dt>
             <dd>
-                <span>{{touristDestination.coordinates}}</span>
+                <span>Lat: {{touristDestination.coordinates.latitude}} Long: {{touristDestination.coordinates.longitude}}</span>
             </dd>
             <dt><span jhiTranslate="pvAppCmsApp.touristDestination.description">Description</span></dt>
             <dd>

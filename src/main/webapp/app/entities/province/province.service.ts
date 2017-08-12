@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Province } from './province.model';
-import { ResponseWrapper, createRequestOption } from '../../shared';
+import { ResponseWrapper, createRequestOption, createRequestOptionLang } from '../../shared';
 
 @Injectable()
 export class ProvinceService {
@@ -31,9 +31,17 @@ export class ProvinceService {
             return res.json();
         });
     }
+    findAll(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOptionLang(req);
+        console.log(options);
+        return this.http.get(`${this.resourceUrl}`).map((res: Response) =>
+            this.convertResponse(res));
+
+    }
 
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
+        console.log(options);
         return this.http.get(this.resourceUrl, options)
             .map((res: Response) => this.convertResponse(res));
     }
@@ -44,6 +52,7 @@ export class ProvinceService {
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
+        console.log( new ResponseWrapper(res.headers, jsonResponse, res.status));
         return new ResponseWrapper(res.headers, jsonResponse, res.status);
     }
 

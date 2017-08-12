@@ -15,3 +15,17 @@ export const createRequestOption = (req?: any): BaseRequestOptions => {
     }
     return options;
 };
+
+export const createRequestOptionLang = (req?: any): BaseRequestOptions => {
+
+    const options: BaseRequestOptions = new BaseRequestOptions();
+    console.log(options);
+    if (req) {
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('lang', req.lang);
+        params.set('query', req.query);
+
+        options.params = params;
+    }
+    return options;
+};

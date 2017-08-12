@@ -9,31 +9,31 @@
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li  *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a class="nav-link" routerLink="pv-app-user" (click)="collapseNavbar()">
                 <i class="fa fa-user-circle" aria-hidden="true"></i>
                 <span >Users</span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a class="nav-link" routerLink="tourist-destination" (click)="collapseNavbar()">
                   <i class="fa fa-plane" aria-hidden="true"></i>
                   <span jhiTranslate="global.menu.entities.touristDestination">Tourist Destination</span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a class="nav-link" routerLink="province" (click)="collapseNavbar()">
                   <i class="fa fa-map-o" aria-hidden="true"></i>
                   <span jhiTranslate="global.menu.entities.province">Province</span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a class="nav-link"routerLink="tico-stop" (click)="collapseNavbar()">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
                   <span jhiTranslate="global.menu.entities.ticoStop">Tico Stop</span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a class="nav-link" routerLink="touristic-interest" (click)="collapseNavbar()">
                   <i class="fa fa-car" aria-hidden="true"></i>
                   <span jhiTranslate="global.menu.entities.touristicInterest">Touristic Interest</span>

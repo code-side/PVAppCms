@@ -7,6 +7,7 @@ import com.codeside.pvapp.repository.PVAppUserRepository;
 import com.codeside.pvapp.web.rest.util.HeaderUtil;
 import com.codeside.pvapp.web.rest.util.PaginationUtil;
 import com.codeside.pvapp.service.dto.PVAppUserDTO;
+import com.codeside.pvapp.service.dto.PhotoDTO;
 import com.codeside.pvapp.service.mapper.PVAppUserMapper;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,6 +32,12 @@ import com.cloudinary.utils.ObjectUtils;
 import java.util.HashMap;
 import java.io.IOException;
 
+import java.time.LocalDate;
+import java.io.ByteArrayInputStream;
+import sun.misc.BASE64Decoder;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 /**
  * REST controller for managing PVAppUser.
@@ -63,10 +70,28 @@ public class PVAppUserResource {
     @PostMapping("/p-v-app-users")
     @Timed
     public ResponseEntity<PVAppUserDTO> createPVAppUser(@RequestBody PVAppUserDTO pVAppUserDTO) throws URISyntaxException {
-        log.debug("REST request to save PVAppUser : {}", pVAppUserDTO);
+        //log.debug("REST request to save PVAppUser : {}", pVAppUserDTO);
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+          "cloud_name", "codesidedevs",
+          "api_key", "748436656856871",
+          "api_secret", "mvN_DfjWnvWgA7ZCaQyUdn4-p4Y"));
         if (pVAppUserDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new pVAppUser cannot already have an ID")).body(null);
         }
+        if (pVAppUserDTO.getPhoto()==null){
+            pVAppUserDTO.setPhoto(new PhotoDTO());
+            pVAppUserDTO.getPhoto().setUrl("http://res.cloudinary.com/codesidedevs/image/upload/v1501719450/default-user-photo.png");
+        }else{
+            try{
+                System.out.println("Saving image");
+                String imageString =  pVAppUserDTO.getPhoto().getUrl().split(",")[1];
+                Map uploadResult = cloudinary.uploader().upload(pVAppUserDTO.getPhoto().getUrl(), ObjectUtils.emptyMap());
+                System.out.println("URL de imagen: " +uploadResult.get("url"));
+                pVAppUserDTO.getPhoto().setUrl(uploadResult.get("url").toString());
+            }catch(IOException ex){}
+        }
+        pVAppUserDTO.setRegistrationDate(LocalDate.now());
+        pVAppUserDTO.setStatus(1);
         PVAppUser pVAppUser = pVAppUserMapper.toEntity(pVAppUserDTO);
         pVAppUser = pVAppUserRepository.save(pVAppUser);
         PVAppUserDTO result = pVAppUserMapper.toDto(pVAppUser);
@@ -109,16 +134,7 @@ public class PVAppUserResource {
     @Timed
     public ResponseEntity<List<PVAppUserDTO>> getAllPVAppUsers(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of PVAppUsers");
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-          "cloud_name", "codesidedevs",
-          "api_key", "748436656856871",
-          "api_secret", "mvN_DfjWnvWgA7ZCaQyUdn4-p4Y"));
-        try{
-            Map uploadResult = cloudinary.uploader().upload("https://vignette2.wikia.nocookie.net/potcoplayers/images/7/7f/Asdf_Movie.jpg/revision/latest?cb=20110428025933", ObjectUtils.emptyMap());
-            System.out.println(uploadResult.get("url"));
-        }catch(IOException ex){
 
-        }
         Page<PVAppUser> page = pVAppUserRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-v-app-users");
         return new ResponseEntity<>(pVAppUserMapper.toDto(page.getContent()), headers, HttpStatus.OK);

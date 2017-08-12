@@ -3,6 +3,8 @@ package com.codeside.pvapp.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A DTO for the TouristicInterest entity.
@@ -17,7 +19,7 @@ public class TouristicInterestDTO implements Serializable {
     private String contact;
     private String address;
     private ProvinceRefDTO province;
-    private String reviews;
+    private List<ReviewDTO> reviews;
     private String photo;
     private CoordinateDTO coordinates;
 
@@ -77,11 +79,11 @@ public class TouristicInterestDTO implements Serializable {
         this.province = province;
     }
 
-    public String getReviews() {
+    public List<ReviewDTO> getReviews() {
         return reviews;
     }
 
-    public void setReviews(String reviews) {
+    public void setReviews(List<ReviewDTO> reviews) {
         this.reviews = reviews;
     }
 
@@ -136,7 +138,6 @@ public class TouristicInterestDTO implements Serializable {
             ", workingHours='" + getWorkingHours() + "'" +
             ", contact='" + getContact() + "'" +
             ", address='" + getAddress() + "'" +
-            ", reviews='" + getReviews() + "'" +
             ", coordinates='" + getCoordinates()  + "'" +
             "}";
     }
