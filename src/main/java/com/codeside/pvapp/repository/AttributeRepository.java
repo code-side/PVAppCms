@@ -15,4 +15,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface AttributeRepository extends MongoRepository<Attribute,String> {
 
 	List<Attribute> findAllByIdiom(String idiom);
+	List<Attribute> findAllByType(String type);
+	List<Attribute> findAllByIdiomAndType(String idiom, String type);
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +41,7 @@ public class AttributeResource {
     }
 
     /**
-     * POST  /Attributes : Create a new Attribute.
+     * POST  /attributes : Create a new Attribute.
      *
      * @param AttributeDTO the AttributeDTO to create
      * @return the ResponseEntity with status 201 (Created) and with body the new AttributeDTO, or with status 400 (Bad Request) if the Attribute has already an ID
@@ -63,7 +63,7 @@ public class AttributeResource {
     }
 
     /**
-     * PUT  /Attributes : Updates an existing Attribute.
+     * PUT  /attributes : Updates an existing Attribute.
      *
      * @param AttributeDTO the AttributeDTO to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated AttributeDTO,
@@ -87,26 +87,39 @@ public class AttributeResource {
     }
 
     /**
-     * GET  /Attributes : get all the Attributes.
+     * GET  /attributes : get all the Attributes.
      *
      * @param lang the idiom version of the information
+     * @param type the type classification of the attribute
      * @return the ResponseEntity with status 200 (OK) and the list of Attributes in body
      */
     @GetMapping("/attributes")
     @Timed
-    public ResponseEntity<List<AttributeDTO>> getAllAttributeRefs(@RequestParam(required=false, defaultValue="en") String lang) {
+    public ResponseEntity<List<AttributeDTO>> getAllAttributeRefs(@RequestParam(required=false) String lang, @RequestParam(required=false) String type) {
         log.debug("REST request to get Attributes in lang : " + lang);
-        List<Attribute> results = attributeRepository.findAllByIdiom(lang);
+        List<Attribute> results;
+
+        if (lang == null && type == null)
+        	results = attributeRepository.findAll();
+        else if (lang != null && type != null)
+        	results = attributeRepository.findAllByIdiomAndType(lang, type);
+        else if (lang != null)
+        	results = attributeRepository.findAllByIdiom(lang);
+        else if (type != null)
+        	results = attributeRepository.findAllByType(type);
+        else
+        	results = new ArrayList<>();
+
         return new ResponseEntity<>(attributeMapper.toDto(results), HttpStatus.OK);
     }
 
     /**
-     * GET  /Attributes/:id : get the "id" Attribute.
+     * GET  /attributes/:id : get the "id" Attribute.
      *
      * @param id the id of the AttributeDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the AttributeDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/Attributes/{id}")
+    @GetMapping("/attributes/{id}")
     @Timed
     public ResponseEntity<AttributeDTO> getAttributeRef(@PathVariable String id) {
         log.debug("REST request to get Attribute : {}", id);

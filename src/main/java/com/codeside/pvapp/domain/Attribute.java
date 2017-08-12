@@ -31,6 +31,11 @@ public class Attribute implements Serializable {
         return id;
     }
 
+    public Attribute id(String id) {
+        this.id = id;
+        return this;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
