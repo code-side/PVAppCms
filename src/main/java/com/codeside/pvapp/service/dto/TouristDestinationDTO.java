@@ -20,13 +20,15 @@ public class TouristDestinationDTO implements Serializable {
     private ProvinceRefDTO province;
     private List<AttributeDTO> attributes;
     private List<ReviewDTO> reviews;
+		private List<String> reports;
 
     public TouristDestinationDTO() {
     	photos = new ArrayList<>();
     	attributes = new ArrayList<>();
     	reviews = new ArrayList<>();
+			reports =  new ArrayList<>();
     }
-    
+
     public String getId() {
         return id;
     }
@@ -98,6 +100,14 @@ public class TouristDestinationDTO implements Serializable {
     public void setReviews(List<ReviewDTO> reviews) {
         this.reviews = reviews;
     }
+
+		public List<String> getReports() {
+				return reports;
+		}
+
+		public void setReports(List<String> reports) {
+				this.reports = reports;
+		}
 
     @Override
     public boolean equals(Object o) {
