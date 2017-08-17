@@ -113,7 +113,9 @@ public class PVAppUserDTO implements Serializable {
     private String gender;
     private PhotoDTO photo;
     private Integer status;
-    private List<TouristDestination> favoriteList;
+
+    private List<TouristDestinationRefDTO> favoriteList;
+
     private List<Achievement> achievements;
 
     public String getId() {
@@ -196,11 +198,11 @@ public class PVAppUserDTO implements Serializable {
         this.status = status;
     }
 
-    public List<TouristDestination> getFavoriteList() {
+    public List<TouristDestinationRefDTO> getFavoriteList() {
         return favoriteList;
     }
 
-    public void setFavoriteList(List<TouristDestination> favoriteList) {
+    public void setFavoriteList(List<TouristDestinationRefDTO> favoriteList) {
         this.favoriteList = favoriteList;
     }
 
