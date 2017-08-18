@@ -77,7 +77,7 @@ public class ReportResource {
         }
       }
 
-      if(exist){
+      if(!exist){
         touristDestination = touristDestinationRepository.save(touristDestination);
       }
     TouristDestinationDTO  result = touristDestinationMapper.toDto(touristDestination);
