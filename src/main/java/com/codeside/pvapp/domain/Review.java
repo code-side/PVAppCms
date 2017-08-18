@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  * A Review.
@@ -18,25 +19,50 @@ public class Review implements Serializable {
     @Id
     private String id;
 
+    @Field("userName")
+    private String userName;
+
+    @Field("userPhoto")
+    private String userPhoto;
+
     @Field("comment")
     private String comment;
-    
+
     @Field("rating")
     private int rating;
-    
+
     @Field("reports")
     private List<String> reports;
-    
+
+    @Field("commentDate")
+    private LocalDate commentDate;
+
     public Review() {
     	reports = new ArrayList<>();
     }
-    
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
     }
 
     public String getComment() {
@@ -62,6 +88,15 @@ public class Review implements Serializable {
 	public void setReports(List<String> reports) {
 		this.reports = reports;
 	}
+
+    public LocalDate getCommentDate() {
+		return commentDate;
+	}
+
+	public void setCommentDate(LocalDate commentDate) {
+		this.commentDate = commentDate;
+	}
+
 
 	@Override
     public boolean equals(Object o) {

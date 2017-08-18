@@ -42,12 +42,16 @@ public class TouristDestination implements Serializable {
     @Field("reviews")
     private List<Review> reviews;
 
+    @Field("reports")
+    private List<String> reports;
+
     public TouristDestination() {
     	photos = new ArrayList<>();
     	attributes = new ArrayList<>();
     	reviews = new ArrayList<>();
+      reports =  new ArrayList<>();
     }
-    
+
     public String getId() {
         return id;
     }
@@ -158,6 +162,19 @@ public class TouristDestination implements Serializable {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<String> getReports() {
+        return reports;
+    }
+
+    public TouristDestination reports(List<String> reports) {
+        this.reports = reports;
+        return this;
+    }
+
+    public void setReports(List<String> reports) {
+        this.reports = reports;
     }
 
     @Override
