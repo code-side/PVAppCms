@@ -15,6 +15,8 @@ import { Province } from '../province/province.model';
 import { ProvinceRef } from '../province/province-ref.model';
 import { ProvinceService } from '../province/province.service';
 
+import { CoordinatesRef } from '../tourist-destination/coordinates-ref.model';
+
 @Component({
     selector: 'jhi-tico-stop-dialog',
     templateUrl: './tico-stop-dialog.component.html'
@@ -54,6 +56,8 @@ export class TicoStopDialogComponent implements OnInit {
         if (this.ticoStop.id !== undefined) {
             this.selectedProvince = this.ticoStop.province.name;
             this.cantons = this.provinces.find((x) => x.name === this.selectedProvince).cantons;
+        }else if(this.ticoStop.id === undefined){
+            this.ticoStop.coordinates = new CoordinatesRef();
         }
     }
 
