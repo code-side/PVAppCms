@@ -15,6 +15,8 @@ import { Province } from '../province/province.model';
 import { ProvinceRef } from '../province/province-ref.model';
 import { ProvinceService } from '../province/province.service';
 
+import { CoordinatesRef } from '../tourist-destination/coordinates-ref.model';
+
 @Component({
     selector: 'jhi-touristic-interest-dialog',
     templateUrl: './touristic-interest-dialog.component.html'
@@ -52,6 +54,7 @@ export class TouristicInterestDialogComponent implements OnInit {
         this.provinces = data;
         if (this.touristicInterest.id === undefined) {
             this.touristicInterest.province = new ProvinceRef();
+            this.touristicInterest.coordinates = new CoordinatesRef();
         } else {
           this.findProvince();
         }
